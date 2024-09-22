@@ -1,0 +1,26 @@
+import * as HeadingStories from './Heading.stories';
+
+<Meta of={HeadingStories}/>
+
+# Heading
+
+
+The **`<Heading>`** component renders heading levels from `<h1>` up to `<h5>`, for consistent headings styling throughout the application.
+
+<Canvas of={HeadingStories.Default}/>
+
+### Usage
+
+<Source code={`import { Heading } from '@ppl/ui'`}/>
+
+<Source code={`
+<Heading 
+  as={as} {/* 'h1' | 'h2' | 'h3' | 'h4' | 'h5' */}
+>
+  { Heading content }
+</Heading>
+`}/>
+
+### Props notes
+
+ - **`as`**: `'h1' | 'h2' | 'h3' | 'h4' | 'h5'`
