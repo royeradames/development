@@ -1,20 +1,8 @@
-import { getStoryblokApi } from "@storyblok/react";
 import { StoryblokStory } from "@storyblok/react/rsc";
-
-const fetchPage = async () => {
-  const storyblokApi = getStoryblokApi();
-  const response = await storyblokApi.get(
-    `cdn/stories/footer`,
-    {
-      version: "draft",
-    },
-    { cache: "no-store" },
-  );
-  return response.data.story;
-};
+import { fetchStory } from "@/app/(helpers)/fetchStory";
 
 const Page = async () => {
-  const story = await fetchPage();
+  const story = await fetchStory("footer");
   return <StoryblokStory story={story} bridgeOptions={{}} />;
 };
 
