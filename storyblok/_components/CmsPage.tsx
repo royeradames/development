@@ -4,18 +4,11 @@ import { formatTitleToId } from "@/app/(helpers)/formatTitleToId";
 
 export type TStoryBokCmsPage = {
   blok: {
-    title: [StoryblokComponentType<any>];
-    navigation?: StoryblokComponentType<any>[];
     body: StoryblokComponentType<any>[];
   };
 };
 
-export function CmsPage({
-  blok: {
-    body,
-    title: [titleBlock],
-  },
-}: TStoryBokCmsPage) {
+export function CmsPage({ blok: { body } }: TStoryBokCmsPage) {
   return (
     <article aria-labelledby={formatTitleToId("Page title")}>
       <div className="max-w-7xl mx-auto">
