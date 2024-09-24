@@ -6,6 +6,8 @@ import { CmsHeader } from "@/storyblok/_components/CmsHeader";
 import { CmsFooter } from "@/storyblok/_components/CmsFooter";
 import { PropsWithChildren } from "react";
 import { storyblokInit } from "@storyblok/react/rsc";
+import CmsHero from "@/storyblok/_components/CmsHero";
+import { CmsButton } from "@/storyblok/_components/CmsButton";
 
 storyblokInit({
   components: {
@@ -14,6 +16,8 @@ storyblokInit({
     image: CmsImage,
     header: CmsHeader,
     footer: CmsFooter,
+    hero: CmsHero,
+    button: CmsButton,
   },
   enableFallbackComponent: true,
 });
