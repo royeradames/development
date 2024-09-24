@@ -39,7 +39,7 @@ export default async function RootLayout({
     fetchStory("footer"),
   ]);
   return (
-    <html lang="en">
+    <html lang="en" data-theme="forest">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
