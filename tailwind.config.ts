@@ -1,11 +1,13 @@
-import type { Config } from "tailwindcss";
+// import type { Config } from "tailwindcss";
 import daisyui from "daisyui";
 
-const config: Config = {
+// const config: Config = {
+const config = {
   content: [
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./storyblok/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
     extend: {
@@ -17,7 +19,7 @@ const config: Config = {
   },
   plugins: [daisyui],
   daisyui: {
-    themes: ["forest"],
+    themes: ["forest", "light", "dark", "cupcake"],
   },
 };
 export default config;
