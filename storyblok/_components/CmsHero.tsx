@@ -1,5 +1,5 @@
-import { StoryblokComponentType } from "@storyblok/react";
-import { storyblokEditable } from "@storyblok/react/rsc";
+import { SbBlokData } from "@storyblok/react";
+import { StoryblokComponent, storyblokEditable } from "@storyblok/react/rsc";
 
 export type TStoryBlokAsset = {
   id: number;
@@ -24,13 +24,13 @@ type TCmsHero = {
     background: TStoryBlokAsset;
     title: string;
     body: string;
-    actions: [StoryblokComponentType<any>];
-  } & StoryblokComponentType<any>;
+    actions: [SbBlokData];
+  };
 };
 export default function CmsHero({
   blok,
   blok: {
-    image: { filename },
+    background: { filename },
     body,
     actions: [actionBlok],
   },
@@ -48,7 +48,7 @@ export default function CmsHero({
         <div className="max-w-md">
           <h1 className="mb-5 text-5xl font-bold">Hello there</h1>
           <p className="mb-5">{body}</p>
-          {actionBlok}
+          <StoryblokComponent blok={actionBlok} />
         </div>
       </div>
     </div>

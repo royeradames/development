@@ -1,3 +1,5 @@
+import { storyblokEditable } from "@storyblok/react/rsc";
+
 export type TCmsButton = {
   blok: {
     text: string;
@@ -52,5 +54,9 @@ export function CmsButton({
     .filter(Boolean) // Filter out any empty strings or undefined
     .join(" "); // Join all class names into one string
 
-  return <button className={classNames}>{text}</button>;
+  return (
+    <button className={classNames} {...storyblokEditable(blok)}>
+      {text}
+    </button>
+  );
 }
