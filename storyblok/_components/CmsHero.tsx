@@ -19,12 +19,13 @@ export type TStoryBlokAsset = {
   };
   is_external_url: boolean;
 };
-type TCmsHero = {
+export type TCmsHero = {
   blok: {
     background: TStoryBlokAsset;
     title: string;
     body: string;
     actions: [SbBlokData];
+    headingAs?: "h1" | "h2";
   };
 };
 export default function CmsHero({
@@ -34,6 +35,7 @@ export default function CmsHero({
     background: { filename },
     body,
     actions: [actionBlok],
+    headingAs: Heading = "h2",
   },
 }: TCmsHero) {
   return (
@@ -74,9 +76,9 @@ export default function CmsHero({
         </svg>
 
         <div className="max-w-md">
-          <h1 className="mb-5 text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-[#1abba9] to-[#6078ea]">
+          <Heading className="mb-5 text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-[#1abba9] to-[#6078ea]">
             {title}
-          </h1>
+          </Heading>
           <p className="mb-5">{body}</p>
           <StoryblokComponent blok={actionBlok} />
         </div>
