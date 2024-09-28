@@ -1,0 +1,29 @@
+import { SbBlokData } from "@storyblok/react";
+import { StoryblokComponent, storyblokEditable } from "@storyblok/react/rsc";
+
+export type TCmsGalleryGrid = {
+  blok: {
+    title?: string;
+    items: SbBlokData[];
+  };
+};
+
+export function CmsGalleryFlex({
+  blok,
+  blok: { title, items },
+}: TCmsGalleryGrid) {
+  const Section = title ? "section" : "div";
+  return (
+    <Section
+      className="px-4 xl:px-0 flex flex-col gap-4"
+      {...storyblokEditable(blok)}
+    >
+      {title ? <h2 className="text-5xl font-bold">{title}</h2> : undefined}
+      <div className="flex gap-4 flex-wrap justify-center">
+        {items.map((item) => {
+          return <StoryblokComponent blok={item} key={item._uid} />;
+        })}
+      </div>
+    </Section>
+  );
+}
