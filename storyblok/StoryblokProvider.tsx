@@ -10,6 +10,8 @@ import CmsHero from "@/storyblok/_components/CmsHero";
 import { CmsButton } from "@/storyblok/_components/CmsButton";
 import { CmsGalleryGrid } from "@/storyblok/_components/CmsGalleryGrid";
 import { CmsGalleryItem } from "@/storyblok/_components/CmsGalleryItem";
+import { CmsGalleryFlex } from "@/storyblok/_components/CmsGalleryFlex";
+import { CmsGalleryFlexItem } from "@/storyblok/_components/CmsGalleryFlexItem";
 
 storyblokInit({
   components: {
@@ -22,6 +24,8 @@ storyblokInit({
     button: CmsButton,
     gallery_grid: CmsGalleryGrid,
     gallery_item: CmsGalleryItem,
+    gallery_flex: CmsGalleryFlex,
+    gallery_flex_item: CmsGalleryFlexItem,
   },
   enableFallbackComponent: true,
 });

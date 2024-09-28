@@ -14,6 +14,9 @@ export function CmsGalleryFlex({
 }: TCmsGalleryGrid) {
   const Section = title ? "section" : "div";
   return (
+    /** not a fan of xl:
+     * xl is coming from the pg, so the page can take over the white space
+     */
     <Section
       className="px-4 xl:px-0 flex flex-col gap-4"
       {...storyblokEditable(blok)}
