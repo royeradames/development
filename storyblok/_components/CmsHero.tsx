@@ -1,27 +1,10 @@
 import { SbBlokData } from "@storyblok/react";
 import { StoryblokComponent, storyblokEditable } from "@storyblok/react/rsc";
+import { SbImage } from "@/storyblok/types/SbImage";
 
-export type TStoryBlokAsset = {
-  id: number;
-  alt: string;
-  name: string;
-  focus: string;
-  title: string;
-  source: string;
-  filename: string;
-  copyright: string;
-  fieldtype: "asset";
-  meta_data: {
-    alt: string;
-    title: string;
-    source: string;
-    copyright: string;
-  };
-  is_external_url: boolean;
-};
 export type TCmsHero = {
   blok: {
-    background: TStoryBlokAsset;
+    background: SbImage;
     title: string;
     body: string;
     actions: [SbBlokData];

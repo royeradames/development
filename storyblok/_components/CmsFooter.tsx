@@ -12,15 +12,14 @@ export type TCmsFooter = {
 
 export function CmsFooter({ blok }: TCmsFooter) {
   return (
-    <>
+    <div {...storyblokEditable(blok)}>
       <Image
         width={2802}
         height={368}
         src={blok.footer.filename}
         alt={blok.footer.alt}
         className="w-full max-w-7xl"
-        {...storyblokEditable(blok)}
       />
-    </>
+    </div>
   );
 }

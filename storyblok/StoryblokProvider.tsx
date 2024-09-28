@@ -8,6 +8,8 @@ import { PropsWithChildren } from "react";
 import { storyblokInit } from "@storyblok/react/rsc";
 import CmsHero from "@/storyblok/_components/CmsHero";
 import { CmsButton } from "@/storyblok/_components/CmsButton";
+import { CmsGalleryGrid } from "@/storyblok/_components/CmsGalleryGrid";
+import { CmsGalleryItem } from "@/storyblok/_components/CmsGalleryItem";
 
 storyblokInit({
   components: {
@@ -18,6 +20,8 @@ storyblokInit({
     footer: CmsFooter,
     hero: CmsHero,
     button: CmsButton,
+    gallery_grid: CmsGalleryGrid,
+    gallery_item: CmsGalleryItem,
   },
   enableFallbackComponent: true,
 });
