@@ -19,7 +19,7 @@ export function CmsPage({
   return (
     <article aria-labelledby={formatTitleToId(headerBlock.title)}>
       <StoryblokComponent blok={{ ...headerBlock, headingAs: "h1" }} />
-      <div className="max-w-7xl mx-auto">
+      <div>
         {body?.map((blok: any) => (
           <StoryblokComponent blok={blok} key={blok._uid} />
         ))}

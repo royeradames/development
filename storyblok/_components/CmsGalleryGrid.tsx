@@ -15,11 +15,11 @@ export function CmsGalleryGrid({
   const Section = title ? "section" : "div";
   return (
     <Section
-      className="gap-6 mt-20 px-4 lg:px-0 grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
+      className="max-w-7xl mx-auto gap-6 mt-20 px-4 xl:px-0 grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
       {...storyblokEditable(blok)}
     >
       {title ? (
-        <h2 className="text-5xl font-bold col-span-full">{title}</h2>
+        <h2 className="text-5xl font-bold col-span-full mb-10">{title}</h2>
       ) : undefined}
       {items.map((item) => {
         return <StoryblokComponent blok={item} key={item._uid} />;

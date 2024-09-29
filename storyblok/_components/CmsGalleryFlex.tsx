@@ -14,15 +14,14 @@ export function CmsGalleryFlex({
 }: TCmsGalleryFlex) {
   const Section = title ? "section" : "div";
   return (
-    /** not a fan of xl:
-     * xl is coming from the pg, so the page can take over the white space
-     */
     <Section
-      className="px-4 xl:px-0 flex flex-col gap-4 mt-20"
+      className="px-4 xl:px-0 flex flex-col gap-4 mt-20 max-w-7xl mx-auto"
       {...storyblokEditable(blok)}
     >
-      {title ? <h2 className="text-5xl font-bold">{title}</h2> : undefined}
-      <div className="flex gap-4 flex-wrap justify-center">
+      {title ? (
+        <h2 className="text-5xl font-bold mb-10">{title}</h2>
+      ) : undefined}
+      <div className="flex gap-6 flex-wrap justify-center">
         {items.map((item) => {
           return <StoryblokComponent blok={item} key={item._uid} />;
         })}

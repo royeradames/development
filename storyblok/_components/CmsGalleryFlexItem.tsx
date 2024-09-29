@@ -11,7 +11,7 @@ export type TCmsGalleryFlexItem = {
 
 export function CmsGalleryFlexItem({
   blok,
-  blok: { title = "Shoes", body, image },
+  blok: { title, body },
 }: TCmsGalleryFlexItem) {
   return (
     <div
@@ -19,11 +19,10 @@ export function CmsGalleryFlexItem({
       {...storyblokEditable(blok)}
     >
       <h3 className="mt-4 mb-2 font-avenir font-semibold leading-tight no-underline text-white text-2xl">
-        Mobile Applications
+        {title}
       </h3>
       <p className="text-white box-border mt-2 mb-5 gap-8 justify-between font-sans text-base font-normal leading-7">
-        iOS. Android. Cross-platform frameworks. We’ve been building for mobile
-        since the first iPhone.
+        {body}
       </p>
     </div>
   );
