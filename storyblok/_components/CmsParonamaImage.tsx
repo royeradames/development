@@ -1,6 +1,6 @@
 import { SbImage } from "@/storyblok/types/SbImage";
-import NextImage from "next/image";
 import { storyblokEditable } from "@storyblok/react/rsc";
+import NextImage from "next/image";
 
 export type TCmsPanoramaImage = {
   blok: {
