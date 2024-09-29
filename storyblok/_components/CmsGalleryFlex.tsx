@@ -18,7 +18,7 @@ export function CmsGalleryFlex({
      * xl is coming from the pg, so the page can take over the white space
      */
     <Section
-      className="px-4 xl:px-0 flex flex-col gap-4"
+      className="px-4 xl:px-0 flex flex-col gap-4 mt-20"
       {...storyblokEditable(blok)}
     >
       {title ? <h2 className="text-5xl font-bold">{title}</h2> : undefined}
