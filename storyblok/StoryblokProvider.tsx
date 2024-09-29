@@ -12,6 +12,7 @@ import { CmsGalleryGrid } from "@/storyblok/_components/CmsGalleryGrid";
 import { CmsGalleryItem } from "@/storyblok/_components/CmsGalleryItem";
 import { CmsGalleryFlex } from "@/storyblok/_components/CmsGalleryFlex";
 import { CmsGalleryFlexItem } from "@/storyblok/_components/CmsGalleryFlexItem";
+import CmsPanoramaImage from "@/storyblok/_components/CmsParonamaImage";
 
 storyblokInit({
   components: {
@@ -26,6 +27,7 @@ storyblokInit({
     gallery_item: CmsGalleryItem,
     gallery_flex: CmsGalleryFlex,
     gallery_flex_item: CmsGalleryFlexItem,
+    panorama_image: CmsPanoramaImage,
   },
   enableFallbackComponent: true,
 });
