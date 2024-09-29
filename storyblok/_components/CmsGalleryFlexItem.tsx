@@ -1,7 +1,7 @@
 import { SbImage } from "@/storyblok/types/SbImage";
 import { storyblokEditable } from "@storyblok/react/rsc";
 
-export type TCmsGallery = {
+export type TCmsGalleryFlexItem = {
   blok: {
     image?: SbImage;
     title?: string;
@@ -12,7 +12,7 @@ export type TCmsGallery = {
 export function CmsGalleryFlexItem({
   blok,
   blok: { title = "Shoes", body, image },
-}: TCmsGallery) {
+}: TCmsGalleryFlexItem) {
   return (
     <div
       className="bg-[#222424] text-white box-border p-4 pt-6 pb-8 flex-grow basis-[250px] flex-shrink-0 max-w-[600px]"

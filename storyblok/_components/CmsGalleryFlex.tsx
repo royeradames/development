@@ -1,7 +1,7 @@
 import { SbBlokData } from "@storyblok/react";
 import { StoryblokComponent, storyblokEditable } from "@storyblok/react/rsc";
 
-export type TCmsGalleryGrid = {
+export type TCmsGalleryFlex = {
   blok: {
     title?: string;
     items: SbBlokData[];
@@ -11,7 +11,7 @@ export type TCmsGalleryGrid = {
 export function CmsGalleryFlex({
   blok,
   blok: { title, items },
-}: TCmsGalleryGrid) {
+}: TCmsGalleryFlex) {
   const Section = title ? "section" : "div";
   return (
     /** not a fan of xl:
