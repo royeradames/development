@@ -16,6 +16,8 @@ import CmsPanoramaImage from "@/storyblok/_components/CmsParonamaImage";
 import CmsContentBlock from "@/storyblok/_components/CmsContentBlock";
 import { CmsHeroWithFigure } from "@/storyblok/_components/CmsHeroWithFigure";
 import { CmsRichtext } from "@/storyblok/_components/CmsRichtext";
+import { CmsPartnerGridItem } from "@/storyblok/_components/CmsPartnerGridItem";
+import { CmsPartnerGridExtended } from "@/storyblok/_components/CmsPartnerGridExtended";
 
 storyblokInit({
   components: {
@@ -33,6 +35,8 @@ storyblokInit({
     content_block: CmsContentBlock,
     hero_with_figure: CmsHeroWithFigure,
     richtext: CmsRichtext,
+    partner_grid_item: CmsPartnerGridItem,
+    partner_grid_extended: CmsPartnerGridExtended,
   },
   enableFallbackComponent: true,
 });
