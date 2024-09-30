@@ -20,7 +20,13 @@ export default function CmsPanoramaImage({
       {...storyblokEditable(blok)}
       className="grid mt-20"
     >
-      <NextImage alt="" src={filename} width={1280} height={358} />
+      <NextImage
+        alt=""
+        src={filename}
+        width={1280}
+        height={358}
+        className=" w-full"
+      />
     </div>
   );
 }

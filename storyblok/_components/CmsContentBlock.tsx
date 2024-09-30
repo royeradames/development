@@ -18,10 +18,11 @@ export default function CmsContentBlock({
 }: TCmsContentBlock) {
   return (
     <article
-      className="max-w-7xl mx-auto mt-20 px-4 xl:px-0 flex flex-col gap-6"
+      className="max-w-7xl mx-auto mt-20 px-4 xl:px-0 flex flex-col gap-16 "
+      data-component="CmsContentBlock"
       {...storyblokEditable(blok)}
     >
-      <div className="flex gap-6 justify-around">
+      <div className="flex flex-col md:flex-row gap-6 justify-around">
         <h2 className="mt-4 col-span-3 text-xl font-bold text-white min-w-max">
           {title}
         </h2>
