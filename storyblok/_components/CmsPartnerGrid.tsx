@@ -3,7 +3,7 @@ import { StoryblokComponent, storyblokEditable } from "@storyblok/react/rsc";
 import { clsx } from "clsx";
 import { formatTitleToId } from "@/app/(helpers)/formatTitleToId";
 
-export type TCmsPartnerGridExtended = {
+export type TCmsPartnerGrid = {
   blok: {
     title?: string;
     items: SbBlokData[];
@@ -11,10 +11,10 @@ export type TCmsPartnerGridExtended = {
   };
 };
 
-export function CmsPartnerGridExtended({
+export function CmsPartnerGrid({
   blok,
   blok: { title, items, isDarkMode = true },
-}: TCmsPartnerGridExtended) {
+}: TCmsPartnerGrid) {
   const Section = title ? "section" : "div";
   return (
     <Section
@@ -27,7 +27,7 @@ export function CmsPartnerGridExtended({
     >
       <div
         className={clsx(
-          "max-w-7xl mx-auto gap-6 py-20 px-4 xl:px-0 grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4",
+          "max-w-7xl mx-auto gap-6 py-20 px-4 xl:px-0 grid grid-cols-2 lg:grid-cols-4",
           {
             "bg-white": !isDarkMode,
             "bg-black": isDarkMode,

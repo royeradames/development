@@ -18,6 +18,7 @@ import { CmsHeroWithFigure } from "@/storyblok/_components/CmsHeroWithFigure";
 import { CmsRichtext } from "@/storyblok/_components/CmsRichtext";
 import { CmsPartnerGridItem } from "@/storyblok/_components/CmsPartnerGridItem";
 import { CmsPartnerGridExtended } from "@/storyblok/_components/CmsPartnerGridExtended";
+import { CmsPartnerGrid } from "@/storyblok/_components/CmsPartnerGrid";
 
 storyblokInit({
   components: {
@@ -37,6 +38,7 @@ storyblokInit({
     richtext: CmsRichtext,
     partner_grid_item: CmsPartnerGridItem,
     partner_grid_extended: CmsPartnerGridExtended,
+    partner_grid: CmsPartnerGrid,
   },
   enableFallbackComponent: true,
 });
