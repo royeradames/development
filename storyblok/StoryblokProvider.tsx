@@ -14,11 +14,12 @@ import { CmsGalleryFlex } from "@/storyblok/_components/CmsGalleryFlex";
 import { CmsGalleryFlexItem } from "@/storyblok/_components/CmsGalleryFlexItem";
 import CmsPanoramaImage from "@/storyblok/_components/CmsParonamaImage";
 import CmsContentBlock from "@/storyblok/_components/CmsContentBlock";
+import { CmsHeroWithFigure } from "@/storyblok/_components/CmsHeroWithFigure";
+import { CmsRichtext } from "@/storyblok/_components/CmsRichtext";
 
 storyblokInit({
   components: {
     page: CmsPage,
-    // richtext: CmsRichtext,
     image: CmsImage,
     header: CmsHeader,
     footer: CmsFooter,
@@ -30,6 +31,8 @@ storyblokInit({
     gallery_flex_item: CmsGalleryFlexItem,
     panorama_image: CmsPanoramaImage,
     content_block: CmsContentBlock,
+    hero_with_figure: CmsHeroWithFigure,
+    richtext: CmsRichtext,
   },
   enableFallbackComponent: true,
 });
