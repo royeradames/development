@@ -3,18 +3,19 @@ import { StoryblokComponent, storyblokEditable } from "@storyblok/react/rsc";
 import { clsx } from "clsx";
 import { formatTitleToId } from "@/app/(helpers)/formatTitleToId";
 
-export type TCmsPartnerGrid = {
+export type TCmsPartnerGridExtended = {
   blok: {
     title?: string;
     items: SbBlokData[];
     isDarkMode: boolean;
+    layout: "ascending" | "odds";
   };
 };
 
-export function CmsPartnerGrid({
+export function DepricatedCmsPartnerGridExtendedNoLimit({
   blok,
-  blok: { title, items, isDarkMode = true },
-}: TCmsPartnerGrid) {
+  blok: { title, items, isDarkMode = true, layout = "ascending" },
+}: TCmsPartnerGridExtended) {
   const Section = title ? "section" : "div";
   return (
     <Section
@@ -26,13 +27,13 @@ export function CmsPartnerGrid({
       {...storyblokEditable(blok)}
     >
       <div
-        className={clsx(
-          "max-w-7xl mx-auto gap-6 py-20 px-4 xl:px-0 grid grid-cols-2 lg:grid-cols-4",
-          {
-            "bg-white": !isDarkMode,
-            "bg-black": isDarkMode,
-          },
-        )}
+        className={clsx("max-w-7xl mx-auto gap-6 py-20 px-4 xl:px-0 grid ", {
+          "bg-white": !isDarkMode,
+          "bg-black": isDarkMode,
+          "sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4":
+            layout === "ascending",
+          "grid-cols-2 lg:grid-cols-4": layout === "odds",
+        })}
       >
         {title ? (
           <h2

@@ -17,9 +17,10 @@ import CmsContentBlock from "@/storyblok/_components/CmsContentBlock";
 import { CmsHeroWithFigure } from "@/storyblok/_components/CmsHeroWithFigure";
 import { CmsRichtext } from "@/storyblok/_components/CmsRichtext";
 import { CmsPartnerGridItem } from "@/storyblok/_components/CmsPartnerGridItem";
-import { CmsPartnerGridExtended } from "@/storyblok/_components/CmsPartnerGridExtended";
-import { CmsPartnerGrid } from "@/storyblok/_components/CmsPartnerGrid";
-import { CmsPartnerGridExtendedNoLimit } from "@/storyblok/_components/CmsPartnerGridExtendedNoLimit";
+import { DepricatedCmsPartnerGridExtended } from "@/storyblok/_components/DepricatedCmsPartnerGridExtended";
+import { DepricatedCmsPartnerGrid } from "@/storyblok/_components/DepricatedCmsPartnerGrid";
+import { DepricatedCmsPartnerGridExtendedNoLimit } from "@/storyblok/_components/DepricatedCmsPartnerGridExtendedNoLimit";
+import { CmsFullBleedCarousel } from "@/storyblok/_components/CmsFullBleedCarousel";
 
 storyblokInit({
   components: {
@@ -38,9 +39,10 @@ storyblokInit({
     hero_with_figure: CmsHeroWithFigure,
     richtext: CmsRichtext,
     partner_grid_item: CmsPartnerGridItem,
-    partner_grid_extended: CmsPartnerGridExtended,
-    partner_grid_extended_no_limit: CmsPartnerGridExtendedNoLimit,
-    partner_grid: CmsPartnerGrid,
+    partner_grid_extended: DepricatedCmsPartnerGridExtended,
+    partner_grid_extended_no_limit: DepricatedCmsPartnerGridExtendedNoLimit,
+    partner_grid: DepricatedCmsPartnerGrid,
+    full_bleed_carousel: CmsFullBleedCarousel,
   },
   enableFallbackComponent: true,
 });

@@ -8,16 +8,14 @@ export type TCmsPartnerGridExtended = {
     title?: string;
     items: SbBlokData[];
     isDarkMode: boolean;
-    layout: "ascending" | "odds";
   };
 };
 
-export function CmsPartnerGridExtendedNoLimit({
+export function DepricatedCmsPartnerGridExtended({
   blok,
-  blok: { title, items, isDarkMode = true, layout = "ascending" },
+  blok: { title, items, isDarkMode = true },
 }: TCmsPartnerGridExtended) {
   const Section = title ? "section" : "div";
-  console.log(blok);
   return (
     <Section
       className={clsx("", {
@@ -28,13 +26,13 @@ export function CmsPartnerGridExtendedNoLimit({
       {...storyblokEditable(blok)}
     >
       <div
-        className={clsx("max-w-7xl mx-auto gap-6 py-20 px-4 xl:px-0 grid ", {
-          "bg-white": !isDarkMode,
-          "bg-black": isDarkMode,
-          "sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4":
-            layout === "ascending",
-          "grid-cols-2 lg:grid-cols-4": layout === "odds",
-        })}
+        className={clsx(
+          "max-w-7xl mx-auto gap-6 py-20 px-4 xl:px-0 grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4",
+          {
+            "bg-white": !isDarkMode,
+            "bg-black": isDarkMode,
+          },
+        )}
       >
         {title ? (
           <h2
