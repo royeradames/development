@@ -19,6 +19,7 @@ import { CmsRichtext } from "@/storyblok/_components/CmsRichtext";
 import { CmsPartnerGridItem } from "@/storyblok/_components/CmsPartnerGridItem";
 import { CmsPartnerGridExtended } from "@/storyblok/_components/CmsPartnerGridExtended";
 import { CmsPartnerGrid } from "@/storyblok/_components/CmsPartnerGrid";
+import { CmsPartnerGridExtendedNoLimit } from "@/storyblok/_components/CmsPartnerGridExtendedNoLimit";
 
 storyblokInit({
   components: {
@@ -38,6 +39,7 @@ storyblokInit({
     richtext: CmsRichtext,
     partner_grid_item: CmsPartnerGridItem,
     partner_grid_extended: CmsPartnerGridExtended,
+    partner_grid_extended_no_limit: CmsPartnerGridExtendedNoLimit,
     partner_grid: CmsPartnerGrid,
   },
   enableFallbackComponent: true,
