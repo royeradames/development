@@ -1,32 +1,63 @@
-import { storyblokEditable } from "@storyblok/react/rsc";
+import { StoryblokComponent, storyblokEditable } from "@storyblok/react/rsc";
+import { clsx } from "clsx";
+import { SbImage } from "@/storyblok/types/SbImage";
+import { SbBlokData } from "@storyblok/react";
+import { formatTitleToId } from "@/app/(helpers)/formatTitleToId";
 
 type TFullBleedCarouselItem = {
   blok: {
-    title?: string;
+    title: string;
+    content: string;
+    image: SbImage;
+    backgroundImage?: SbImage;
+    actions: [SbBlokData];
+    backgroundColor: "blue" | "grey" | "green" | "yellow" | "black";
+    figure: SbImage;
   };
+  className?: string;
 };
 
 export function CmsFullBleedCarouselItem({
   blok,
-  blok: { title = "Case studies" },
+  blok: {
+    title = "Case studies",
+    image: { filename, alt },
+    content,
+    actions: [action] = [],
+    backgroundColor = "black",
+    backgroundImage: { filename: backgroundImagefilename } = { filename: "" },
+    figure: { filename: figureFilename, alt: figureAlt },
+  },
+  className = "",
 }: TFullBleedCarouselItem) {
+  const headingId = formatTitleToId(title);
   return (
-    <div className="hero bg-base-200 min-h-screen" {...storyblokEditable(blok)}>
+    <section
+      aria-labelledby={headingId}
+      className={clsx("hero bg-base-200 min-h-screen bg-right-bottom", {
+        [className]: className,
+        "bg-[#087d30]": backgroundColor === "green",
+      })}
+      style={{
+        backgroundImage: `url('${backgroundImagefilename}'), linear-gradient(#007730, #5fc427)`,
+      }}
+      {...storyblokEditable(blok)}
+    >
       <div className="hero-content flex-col lg:flex-row-reverse">
         <img
-          src="https://img.daisyui.com/images/stock/photo-1635805737707-575885ab0820.webp"
-          className="max-w-sm rounded-lg shadow-2xl"
+          src={figureFilename}
+          alt={figureAlt}
+          className="max-w-sm rounded hidden lg:inline-block"
         />
-        <div>
-          <h1 className="text-5xl font-bold">Box Office News!</h1>
-          <p className="py-6">
-            Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
-            excepturi exercitationem quasi. In deleniti eaque aut repudiandae et
-            a id nisi.
-          </p>
-          <button className="btn btn-primary">Get Started</button>
+        <div className="flex flex-col gap-6">
+          <img src={filename} alt={alt} className="max-w-md" />
+          <h2 id={headingId} className="text-5xl font-bold">
+            {title}
+          </h2>
+          <p className="py-6">{content}</p>
+          <StoryblokComponent blok={action} />
         </div>
       </div>
-    </div>
+    </section>
   );
 }

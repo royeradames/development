@@ -13,15 +13,18 @@ export function CmsFullBleedCarousel({
   blok: { title = "", items },
 }: TFullBleedCarousel) {
   return (
-    <section className="py-20 bg-white" {...storyblokEditable(blok)}>
+    <section
+      className="py-20 bg-white flex flex-col gap-6 w-full"
+      {...storyblokEditable(blok)}
+    >
       {title ? (
-        <h2 className="text-5xl font-bold mb-10 text-black px-4 xl:px-0 max-w-lg mx-auto">
+        <h2 className="text-5xl font-bold text-black px-4 xl:px-0 max-w-lg mx-auto">
           {title}
         </h2>
       ) : undefined}
       {/* todo: should cover the whole width and be show side items */}
 
-      <div className="carousel carousel-center w-full pb-4 space-x-4 max-w-lg">
+      <div className="carousel carousel-center w-full pb-4 space-x-4">
         {items.map((item) => {
           return (
             <StoryblokComponent
@@ -53,7 +56,7 @@ export function CmsFullBleedCarousel({
           />
         </div>
       </div>
-      <div className="flex gap-6 px-4 xl:px-0 max-w-7xl mx-auto">
+      <div className="flex gap-6 px-4 xl:px-0">
         {/* todo: navigation should be smooth and it shouldn't hide the title */}
         <a href="#slide1" className="btn btn-circle">
           ❮
