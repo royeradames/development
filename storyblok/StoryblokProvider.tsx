@@ -22,6 +22,7 @@ import { DepricatedCmsPartnerGrid } from "@/storyblok/_components/DepricatedCmsP
 import { DepricatedCmsPartnerGridExtendedNoLimit } from "@/storyblok/_components/DepricatedCmsPartnerGridExtendedNoLimit";
 import { CmsFullBleedCarousel } from "@/storyblok/_components/CmsFullBleedCarousel";
 import { CmsFullBleedCarouselItem } from "@/storyblok/_components/CmsFullBleedCarouselItem";
+import { CmsShadowCardGalleryGridItem } from "@/storyblok/_components/CmsShadowCardGalleryGridItem";
 
 storyblokInit({
   components: {
@@ -45,6 +46,8 @@ storyblokInit({
     partner_grid: DepricatedCmsPartnerGrid,
     full_bleed_carousel: CmsFullBleedCarousel,
     full_bleed_carousel_item: CmsFullBleedCarouselItem,
+    // todo: create storyblok variant
+    ShadowCardGalleryGridItem: CmsShadowCardGalleryGridItem,
   },
   enableFallbackComponent: true,
 });
