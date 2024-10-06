@@ -22,48 +22,19 @@ export function CmsFullBleedCarousel({
           {title}
         </h2>
       ) : undefined}
-      {/* todo: should cover the whole width and be show side items */}
 
       <div className="carousel carousel-center w-full pb-4 space-x-4">
-        {items.map((item) => {
+        {items.map((item, index) => {
           return (
-            <StoryblokComponent
-              blok={item}
-              key={item._uid}
-              className="carousel-item"
-            />
+            <div className="carousel-item">
+              <StoryblokComponent
+                id={`slide${index + 1}`}
+                blok={item}
+                key={item._uid}
+              />
+            </div>
           );
         })}
-        <div className="carousel-item">
-          <img
-            id="slide1"
-            src="https://img.daisyui.com/images/stock/photo-1559703248-dcaaec9fab78.webp"
-            className="rounded-box "
-          />
-        </div>
-        <div className="carousel-item">
-          <img
-            id="slide2"
-            src="https://img.daisyui.com/images/stock/photo-1565098772267-60af42b81ef2.webp"
-            className="rounded-box "
-          />
-        </div>
-        <div className="carousel-item">
-          <img
-            id="slide3"
-            src="https://img.daisyui.com/images/stock/photo-1572635148818-ef6fd45eb394.webp"
-            className="rounded-box "
-          />
-        </div>
-      </div>
-      <div className="flex gap-6 px-4 xl:px-0">
-        {/* todo: navigation should be smooth and it shouldn't hide the title */}
-        <a href="#slide1" className="btn btn-circle">
-          ❮
-        </a>
-        <a href="#slide3" className="btn btn-circle">
-          ❯
-        </a>
       </div>
     </section>
   );
