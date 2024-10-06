@@ -19,6 +19,8 @@ type TFullBleedCarouselItem = {
     title: string;
     content: string;
     image: SbImage;
+    imageHeight: string;
+    imageWidth: string;
     backgroundImage?: SbImage;
     backgroundColor: "blue" | "grey" | "green" | "yellow" | "black";
     figure: SbImage;
@@ -27,6 +29,7 @@ type TFullBleedCarouselItem = {
     bgPosition: "bottomRight" | "cover" | "topRight" | "bottom";
   };
   className?: string;
+  id?: string;
 };
 
 export function CmsFullBleedCarouselItem({
@@ -34,6 +37,8 @@ export function CmsFullBleedCarouselItem({
   blok: {
     title = "Case studies",
     image: { filename, alt },
+    imageHeight = 48,
+    imageWidth = 48,
     content,
     backgroundColor = "black",
     backgroundImage: { filename: backgroundImagefilename } = { filename: "" },
@@ -43,6 +48,7 @@ export function CmsFullBleedCarouselItem({
     bgPosition,
   },
   className = "",
+  id,
 }: TFullBleedCarouselItem) {
   const headingId = formatTitleToId(title);
   const linearGradiant = {
@@ -52,14 +58,17 @@ export function CmsFullBleedCarouselItem({
     yellow: "",
     black: "",
   };
-  // const backgroundImage = `url('${backgroundImagefilename}`;
   const backgroundImage = `url('${backgroundImagefilename}')${linearGradiant[backgroundColor] ? `, ${linearGradiant[backgroundColor]}` : ""}`;
-  console.log(backgroundImage);
   return (
     <section
+      id={id}
       aria-labelledby={headingId}
       className={clsx(
-        ["hero min-h-screen", "pt-20 lg:pt-0", "items-start lg:items-center"],
+        [
+          "hero max-w-screen-xl",
+          "pt-20 lg:pt-0",
+          "items-start lg:items-center",
+        ],
         {
           [className]: className,
           "bg-[#015baa]": backgroundColor === "blue",
@@ -85,15 +94,37 @@ export function CmsFullBleedCarouselItem({
           className="max-w-sm rounded hidden lg:inline-block"
         />
         <div className="flex flex-col gap-6">
-          <img src={filename} alt={alt} className="max-w-md" />
-          <h2 id={headingId} className="text-5xl font-bold text-white">
+          <NextImage
+            src={filename}
+            alt={alt}
+            height={+imageHeight}
+            width={+imageWidth}
+            className="max-w-md"
+          />
+          <h2
+            id={headingId}
+            className={clsx("text-5xl font-bold", {
+              "text-black": backgroundColor === "yellow",
+              "text-white": !(backgroundColor === "yellow"),
+            })}
+          >
             {title}
           </h2>
-          <p className="text-base text-white">{content}</p>
+          <p
+            className={clsx("text-base", {
+              "text-black": backgroundColor === "yellow",
+              "text-white": !(backgroundColor === "yellow"),
+            })}
+          >
+            {content}
+          </p>
           <Link
             href={url}
             target={target}
-            className="text-white text-xl font-bold"
+            className={clsx("text-xl font-bold", {
+              "text-black": backgroundColor === "yellow",
+              "text-white": !(backgroundColor === "yellow"),
+            })}
           >
             Learn more{" "}
             {linkFilename ? (
