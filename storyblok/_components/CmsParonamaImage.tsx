@@ -18,7 +18,7 @@ export default function CmsPanoramaImage({
     <div
       data-component="CmsPanoramaImage"
       {...storyblokEditable(blok)}
-      className="grid mt-20"
+      className="grid pt-20 bg-black"
     >
       <NextImage
         alt=""

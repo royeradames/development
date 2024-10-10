@@ -15,16 +15,18 @@ export function CmsGalleryFlex({
   const Section = title ? "section" : "div";
   return (
     <Section
-      className="px-4 xl:px-0 flex flex-col gap-4 mt-20 max-w-7xl mx-auto"
+      className="px-4 xl:px-0 pt-20 bg-black"
       {...storyblokEditable(blok)}
     >
-      {title ? (
-        <h2 className="text-5xl font-bold mb-10">{title}</h2>
-      ) : undefined}
-      <div className="flex gap-6 flex-wrap justify-center">
-        {items.map((item) => {
-          return <StoryblokComponent blok={item} key={item._uid} />;
-        })}
+      <div className="flex flex-col gap-4 max-w-7xl mx-auto">
+        {title ? (
+          <h2 className="text-5xl font-bold mb-10 text-white">{title}</h2>
+        ) : undefined}
+        <div className="flex gap-6 flex-wrap justify-center">
+          {items.map((item) => {
+            return <StoryblokComponent blok={item} key={item._uid} />;
+          })}
+        </div>
       </div>
     </Section>
   );
