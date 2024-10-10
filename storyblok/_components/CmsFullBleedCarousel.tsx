@@ -1,8 +1,11 @@
-import { StoryblokComponent, storyblokEditable } from "@storyblok/react/rsc";
-import { SbBlokData } from "@storyblok/react";
-import React, { useEffect, useRef, useState } from "react";
+import {StoryblokComponent, storyblokEditable} from "@storyblok/react/rsc";
+import {SbBlokData} from "@storyblok/react";
+import React, {useEffect, useRef, useState} from "react";
 
-// Custom hook for carousel logic
+/**
+ * Custom hook for carousel logic.
+ * @param itemCount - Number of items in the carousel.
+ */
 function useCarousel(itemCount: number) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [itemWidth, setItemWidth] = useState(0);
@@ -11,27 +14,31 @@ function useCarousel(itemCount: number) {
   // Calculate item width once the component mounts
   useEffect(() => {
     const carousel = carouselRef.current;
-    if (carousel) {
-      const item = carousel.querySelector(
-        ".carousel-item",
-      ) as HTMLElement | null;
-      if (item) {
-        const itemStyles = window.getComputedStyle(item);
-        const width =
-          item.offsetWidth + parseInt(itemStyles.marginRight || "0");
-        setItemWidth(width);
-      }
+    if (!carousel) {
+      return;
     }
+    const item = carousel.querySelector(".carousel-item") as HTMLElement | null;
+    if (!item) {
+      return;
+    }
+    const itemStyles = window.getComputedStyle(item);
+    const width = item.offsetWidth + parseInt(itemStyles.marginRight || "0");
+    setItemWidth(width);
   }, [itemCount]);
 
   // Update currentIndex on scroll
   const handleScroll = () => {
     const carousel = carouselRef.current;
-    if (carousel && itemWidth > 0) {
-      const scrollLeft = carousel.scrollLeft;
-      const newIndex = Math.round(scrollLeft / itemWidth);
-      setCurrentIndex(newIndex);
+    if (!carousel) {
+      return;
     }
+    const isCarouselLoaded = itemWidth > 0;
+    if (!isCarouselLoaded) {
+      return;
+    }
+    const scrollLeft = carousel.scrollLeft;
+    const newIndex = Math.round(scrollLeft / itemWidth);
+    setCurrentIndex(newIndex);
   };
 
   useEffect(() => {
@@ -49,12 +56,18 @@ function useCarousel(itemCount: number) {
   // Function to scroll to a specific index
   const scrollToIndex = (index: number) => {
     const carousel = carouselRef.current;
-    if (carousel && itemWidth > 0) {
-      carousel.scrollTo({
-        left: index * itemWidth,
-        behavior: "smooth",
-      });
+    if (!carousel) {
+      return;
     }
+    const isCarouselLoaded = itemWidth > 0;
+    if (!isCarouselLoaded) {
+      return;
+    }
+    const horizontalScrollToItemView = index * itemWidth;
+    carousel.scrollTo({
+      left: horizontalScrollToItemView,
+      behavior: "smooth",
+    });
   };
 
   // Functions for prev and next buttons
@@ -71,7 +84,6 @@ function useCarousel(itemCount: number) {
   };
 
   return {
-    currentIndex,
     carouselRef,
     handlePrev,
     handleNext,
@@ -87,6 +99,13 @@ export type TFullBleedCarousel = {
   };
 };
 
+/**
+ * Carousel component that displays items with optional navigation buttons.
+ * @param blok - Contains carousel configuration and items.
+ * @param title
+ * @param items
+ * @param buttonsPosition
+ */
 export function CmsFullBleedCarousel({
   blok,
   blok: { title = "", items, buttonsPosition = "none" },
@@ -116,60 +135,74 @@ export function CmsFullBleedCarousel({
             key={item._uid}
           >
             <StoryblokComponent id={`slide${index + 1}`} blok={item} />
-            {buttonsPosition === "inside" ? (
-              <PreviousAndNextInsideCard
-                index={index}
-                items={items}
-                scrollToIndex={scrollToIndex}
-              />
-            ) : null}
+            <PrevNextButtons
+              currentPosition={buttonsPosition}
+              onPrev={() =>
+                scrollToIndex(index === 0 ? items.length - 1 : index - 1)
+              }
+              onNext={() =>
+                scrollToIndex(index === items.length - 1 ? 0 : index + 1)
+              }
+              position="inside"
+            />
           </div>
         ))}
       </div>
 
-      {/* Optional Prev and Next Buttons Below the Carousel */}
-      {buttonsPosition === "below" && (
-        <div className="flex justify-center mt-4">
-          <button onClick={handlePrev} className="btn btn-circle mx-2">
-            ❮
-          </button>
-          <button onClick={handleNext} className="btn btn-circle mx-2">
-            ❯
-          </button>
-        </div>
-      )}
+      <PrevNextButtons
+        onPrev={handlePrev}
+        onNext={handleNext}
+        position="below"
+        currentPosition={buttonsPosition}
+      />
     </section>
   );
 }
 
-// Updated PreviousAndNextInsideCard component
-
-type TPreviousAndNextInsideCard = {
-  index: number;
-  items: SbBlokData[];
-  scrollToIndex: (index: number) => void;
+type PrevNextButtonsProps = {
+  onPrev: () => void;
+  onNext: () => void;
+  position: TFullBleedCarousel["blok"]["buttonsPosition"];
+  currentPosition: TFullBleedCarousel["blok"]["buttonsPosition"];
 };
 
-function PreviousAndNextInsideCard({
-  index,
-  items,
-  scrollToIndex,
-}: TPreviousAndNextInsideCard) {
-  const prevIndex = index === 0 ? items.length - 1 : index - 1;
-  const nextIndex = index === items.length - 1 ? 0 : index + 1;
+/**
+ * PrevNextButtons component renders navigation buttons.
+ * @param onPrev - Function to call when previous button is clicked.
+ * @param onNext - Function to call when next button is clicked.
+ * @param position - Position of the buttons, affecting styling.
+ * @param currentPosition - The current desire position.
+ */
+function PrevNextButtons({
+  onPrev,
+  onNext,
+  position,
+  currentPosition,
+}: PrevNextButtonsProps) {
+  const dontRender = currentPosition === "none" || currentPosition !== position;
+  if (dontRender) return undefined;
+  const buttonClassNames = "btn btn-circle mx-2";
 
+  if (position === "inside") {
+    return (
+      <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
+        <button onClick={onPrev} className={buttonClassNames}>
+          ❮
+        </button>
+        <button onClick={onNext} className={buttonClassNames}>
+          ❯
+        </button>
+      </div>
+    );
+  }
+
+  // position === "below"
   return (
-    <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-      <button
-        onClick={() => scrollToIndex(prevIndex)}
-        className="btn btn-circle"
-      >
+    <div className="flex justify-center mt-4">
+      <button onClick={onPrev} className={buttonClassNames}>
         ❮
       </button>
-      <button
-        onClick={() => scrollToIndex(nextIndex)}
-        className="btn btn-circle"
-      >
+      <button onClick={onNext} className={buttonClassNames}>
         ❯
       </button>
     </div>
