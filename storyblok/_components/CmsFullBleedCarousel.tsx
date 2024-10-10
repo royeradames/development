@@ -1,6 +1,7 @@
 import {StoryblokComponent, storyblokEditable} from "@storyblok/react/rsc";
 import {SbBlokData} from "@storyblok/react";
 import React, {useEffect, useRef, useState} from "react";
+import {cn} from "@/lib/utils";
 
 /**
  * Custom hook for carousel logic.
@@ -188,24 +189,15 @@ function PrevNextButtons({
 }: PrevNextButtonsProps) {
   const dontRender = currentPosition === "none" || currentPosition !== position;
   if (dontRender) return undefined;
-  const buttonClassNames = "btn btn-circle mx-2";
-
-  if (position === "inside") {
-    return (
-      <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-        <button onClick={onPrev} className={buttonClassNames}>
-          ❮
-        </button>
-        <button onClick={onNext} className={buttonClassNames}>
-          ❯
-        </button>
-      </div>
-    );
-  }
-
-  // position === "below"
+  const buttonClassNames = "btn btn-circle mx-2 text-white";
   return (
-    <div className="flex justify-center mt-4">
+    <div
+      className={cn("flex", {
+        "absolute justify-between transform -translate-y-1/2 left-5 right-5 top-1/2":
+          position === "inside",
+        "justify-center mt-4": position === "below",
+      })}
+    >
       <button onClick={onPrev} className={buttonClassNames}>
         ❮
       </button>
