@@ -1,22 +1,12 @@
 import { StoryblokComponent, storyblokEditable } from "@storyblok/react/rsc";
 import { SbBlokData } from "@storyblok/react";
-import { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
-export type TFullBleedCarousel = {
-  blok: {
-    title?: string;
-    items: SbBlokData[];
-    usePreviousAndNextInsideCard: boolean;
-  };
-};
-
-export function CmsFullBleedCarousel({
-  blok,
-  blok: { title = "", items, usePreviousAndNextInsideCard = false },
-}: TFullBleedCarousel) {
+// Custom hook for carousel logic
+function useCarousel(itemCount: number) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [itemWidth, setItemWidth] = useState(0);
-  const carouselRef = useRef<HTMLDivElement>(null);
+  const carouselRef = useRef<HTMLDivElement | null>(null);
 
   // Calculate item width once the component mounts
   useEffect(() => {
@@ -31,7 +21,7 @@ export function CmsFullBleedCarousel({
         setItemWidth(width);
       }
     }
-  }, [items]);
+  }, [itemCount]);
 
   // Update currentIndex on scroll
   const handleScroll = () => {
@@ -54,28 +44,58 @@ export function CmsFullBleedCarousel({
     };
   }, [itemWidth]);
 
-  // Functions for prev and next buttons
-  const handlePrev = () => {
-    const newIndex = currentIndex > 0 ? currentIndex - 1 : items.length - 1;
+  // Function to scroll to a specific index
+  const scrollToIndex = (index: number) => {
     if (carouselRef.current && itemWidth > 0) {
       carouselRef.current.scrollTo({
-        left: newIndex * itemWidth,
+        left: index * itemWidth,
         behavior: "smooth",
       });
     }
+  };
+
+  // Functions for prev and next buttons
+  const handlePrev = () => {
+    const newIndex = currentIndex > 0 ? currentIndex - 1 : itemCount - 1;
+    scrollToIndex(newIndex);
     setCurrentIndex(newIndex);
   };
 
   const handleNext = () => {
-    const newIndex = currentIndex < items.length - 1 ? currentIndex + 1 : 0;
-    if (carouselRef.current && itemWidth > 0) {
-      carouselRef.current.scrollTo({
-        left: newIndex * itemWidth,
-        behavior: "smooth",
-      });
-    }
+    const newIndex = currentIndex < itemCount - 1 ? currentIndex + 1 : 0;
+    scrollToIndex(newIndex);
     setCurrentIndex(newIndex);
   };
+
+  return {
+    currentIndex,
+    carouselRef,
+    handlePrev,
+    handleNext,
+    scrollToIndex,
+  };
+}
+
+export type TFullBleedCarousel = {
+  blok: {
+    title?: string;
+    items: SbBlokData[];
+    usePreviousAndNextInsideCard: boolean;
+    showPrevNextButtonsBelow?: boolean;
+  };
+};
+
+export function CmsFullBleedCarousel({
+  blok,
+  blok: {
+    title = "",
+    items,
+    usePreviousAndNextInsideCard = false,
+    showPrevNextButtonsBelow = false,
+  },
+}: TFullBleedCarousel) {
+  const { currentIndex, carouselRef, handlePrev, handleNext, scrollToIndex } =
+    useCarousel(items.length);
 
   return (
     <section
@@ -99,38 +119,60 @@ export function CmsFullBleedCarousel({
           >
             <StoryblokComponent id={`slide${index + 1}`} blok={item} />
             {usePreviousAndNextInsideCard ? (
-              <PreviousAndNextInsideCard index={index} items={items} />
+              <PreviousAndNextInsideCard
+                index={index}
+                items={items}
+                scrollToIndex={scrollToIndex}
+              />
             ) : null}
           </div>
         ))}
       </div>
 
-      {/* Prev and Next Buttons Below the Carousel */}
-      <div className="flex justify-center mt-4">
-        <button onClick={handlePrev} className="btn btn-circle mx-2">
-          ❮
-        </button>
-        <button onClick={handleNext} className="btn btn-circle mx-2">
-          ❯
-        </button>
-      </div>
+      {/* Optional Prev and Next Buttons Below the Carousel */}
+      {showPrevNextButtonsBelow && (
+        <div className="flex justify-center mt-4">
+          <button onClick={handlePrev} className="btn btn-circle mx-2">
+            ❮
+          </button>
+          <button onClick={handleNext} className="btn btn-circle mx-2">
+            ❯
+          </button>
+        </div>
+      )}
     </section>
   );
 }
 
-// Optional: If you still need the PreviousAndNextInsideCard component
-const PreviousAndNextInsideCard = ({ index, items }) => {
+// Updated PreviousAndNextInsideCard component
+const PreviousAndNextInsideCard = ({
+  index,
+  items,
+  scrollToIndex,
+}: {
+  index: number;
+  items: SbBlokData[];
+  scrollToIndex: (index: number) => void;
+}) => {
   const prevIndex = index === 0 ? items.length - 1 : index - 1;
   const nextIndex = index === items.length - 1 ? 0 : index + 1;
 
+  const handlePrev = () => {
+    scrollToIndex(prevIndex);
+  };
+
+  const handleNext = () => {
+    scrollToIndex(nextIndex);
+  };
+
   return (
     <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-      <a href={`#slide${prevIndex + 1}`} className="btn btn-circle">
+      <button onClick={handlePrev} className="btn btn-circle">
         ❮
-      </a>
-      <a href={`#slide${nextIndex + 1}`} className="btn btn-circle">
+      </button>
+      <button onClick={handleNext} className="btn btn-circle">
         ❯
-      </a>
+      </button>
     </div>
   );
 };
