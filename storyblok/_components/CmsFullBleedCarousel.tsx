@@ -80,19 +80,13 @@ export type TFullBleedCarousel = {
   blok: {
     title?: string;
     items: SbBlokData[];
-    usePreviousAndNextInsideCard: boolean;
-    showPrevNextButtonsBelow?: boolean;
+    buttonsPosition: "bellow" | "inside" | "none";
   };
 };
 
 export function CmsFullBleedCarousel({
   blok,
-  blok: {
-    title = "",
-    items,
-    usePreviousAndNextInsideCard = false,
-    showPrevNextButtonsBelow = false,
-  },
+  blok: { title = "", items, buttonsPosition = "none" },
 }: TFullBleedCarousel) {
   const { currentIndex, carouselRef, handlePrev, handleNext, scrollToIndex } =
     useCarousel(items.length);
@@ -118,7 +112,7 @@ export function CmsFullBleedCarousel({
             key={item._uid}
           >
             <StoryblokComponent id={`slide${index + 1}`} blok={item} />
-            {usePreviousAndNextInsideCard ? (
+            {buttonsPosition === "inside" ? (
               <PreviousAndNextInsideCard
                 index={index}
                 items={items}
@@ -130,7 +124,7 @@ export function CmsFullBleedCarousel({
       </div>
 
       {/* Optional Prev and Next Buttons Below the Carousel */}
-      {showPrevNextButtonsBelow && (
+      {buttonsPosition === "bellow" && (
         <div className="flex justify-center mt-4">
           <button onClick={handlePrev} className="btn btn-circle mx-2">
             ❮
@@ -145,34 +139,35 @@ export function CmsFullBleedCarousel({
 }
 
 // Updated PreviousAndNextInsideCard component
-const PreviousAndNextInsideCard = ({
-  index,
-  items,
-  scrollToIndex,
-}: {
+
+type TPreviousAndNextInsideCard = {
   index: number;
   items: SbBlokData[];
   scrollToIndex: (index: number) => void;
-}) => {
+};
+
+function PreviousAndNextInsideCard({
+  index,
+  items,
+  scrollToIndex,
+}: TPreviousAndNextInsideCard) {
   const prevIndex = index === 0 ? items.length - 1 : index - 1;
   const nextIndex = index === items.length - 1 ? 0 : index + 1;
 
-  const handlePrev = () => {
-    scrollToIndex(prevIndex);
-  };
-
-  const handleNext = () => {
-    scrollToIndex(nextIndex);
-  };
-
   return (
     <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-      <button onClick={handlePrev} className="btn btn-circle">
+      <button
+        onClick={() => scrollToIndex(prevIndex)}
+        className="btn btn-circle"
+      >
         ❮
       </button>
-      <button onClick={handleNext} className="btn btn-circle">
+      <button
+        onClick={() => scrollToIndex(nextIndex)}
+        className="btn btn-circle"
+      >
         ❯
       </button>
     </div>
   );
-};
+}
