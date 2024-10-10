@@ -8,7 +8,7 @@ type TCmsShadowCardGalleryGridItem = {
   blok: {
     title: string;
     subtitle: string;
-    destination: SbLink;
+    destination: Pick<SbLink, "cached_url" | "target">;
     author: string;
   };
   headingAs: "h2" | "h3";
@@ -20,7 +20,7 @@ export function InsidesGridItemCms({
   blok: {
     title = "",
     subtitle = "",
-    destination: { url = "", target = "" },
+    destination: { cached_url = "", target = "_self" },
     author = "",
   },
   headingAs: Heading = "h2",
@@ -45,7 +45,7 @@ export function InsidesGridItemCms({
         >
           <div className="uppercase text-base">{subtitle}</div>
           <Link
-            href={url}
+            href={cached_url}
             target={target}
             className="text-4xl sm:text-5xl md:text-3xl lg:text-lg hover:underline"
           >
@@ -63,7 +63,7 @@ export function InsidesGridItemCms({
         </p>
       </hgroup>
       <Link
-        href={url}
+        href={cached_url}
         target={target}
         className="text-[#1abba9] text-base hover:underline"
       >

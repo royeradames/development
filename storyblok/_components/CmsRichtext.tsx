@@ -21,7 +21,6 @@ import {
   NODE_PARAGRAPH,
   NODE_QUOTE,
   NODE_UL,
-  render,
 } from "storyblok-rich-text-react-renderer";
 import { Heading } from "@/components/Heading";
 
@@ -187,7 +186,7 @@ export function CmsRichtext(props: any) {
       className="flex flex-col gap-4"
       {...storyblokEditable(props.blok)}
     >
-      {render(props?.blok?.content, resolvers)}
+      {/*{render(props?.blok?.content, resolvers)}*/}
     </div>
   );
 }

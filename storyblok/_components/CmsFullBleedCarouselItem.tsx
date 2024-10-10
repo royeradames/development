@@ -21,11 +21,11 @@ type TFullBleedCarouselItem = {
     image: SbImage;
     imageHeight: string;
     imageWidth: string;
-    backgroundImage?: SbImage;
+    backgroundImage?: Pick<SbImage, "filename">;
     backgroundColor: "blue" | "grey" | "green" | "yellow" | "black";
-    figure: SbImage;
-    link: SbLink;
-    linkIcon?: SbImage;
+    figure: Pick<SbImage, "filename" | "alt">;
+    link: Pick<SbLink, "url" | "target">;
+    linkIcon?: Pick<SbImage, "filename">;
     bgPosition: "bottomRight" | "cover" | "topRight" | "bottom";
   };
   className?: string;
@@ -37,8 +37,8 @@ export function CmsFullBleedCarouselItem({
   blok: {
     title = "Case studies",
     image: { filename, alt },
-    imageHeight = 48,
-    imageWidth = 48,
+    imageHeight = "48",
+    imageWidth = "48",
     content,
     backgroundColor = "black",
     backgroundImage: { filename: backgroundImagefilename } = { filename: "" },

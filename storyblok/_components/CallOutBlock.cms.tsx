@@ -7,9 +7,13 @@ export function CallOutBlockCms({
   blok: {
     title = "",
     message = "",
-    destination: { cached_url = "", target = "" } = {
+    destination: { cached_url = "", target = "_blank" } = {
       cached_url: "",
-      target: "",
+      target: "_blank",
+      id: "",
+      url: "",
+      linktype: "url",
+      fieldtype: "multilink",
     },
     label = "",
   },

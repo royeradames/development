@@ -4,7 +4,7 @@ import NextImage from "next/image";
 
 export type TCmsGallery = {
   blok: {
-    image?: SbImage;
+    image?: Pick<SbImage, "filename">;
     title?: string;
     body?: string;
   };
@@ -12,11 +12,7 @@ export type TCmsGallery = {
 
 export function CmsGalleryItem({
   blok,
-  blok: {
-    title,
-    body,
-    image: { filename },
-  },
+  blok: { title, body, image: { filename = "" } = { filename: "" } },
 }: TCmsGallery) {
   return (
     <div
