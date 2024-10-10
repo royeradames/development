@@ -25,7 +25,6 @@ import { CmsFullBleedCarouselItem } from "@/storyblok/_components/CmsFullBleedCa
 import { CmsShadowCardGalleryGridItem } from "@/storyblok/_components/CmsShadowCardGalleryGridItem";
 import { LeaderGridItem } from "@/storyblok/_components/LeaderGridItem.cms";
 import { CmsCarouselWithChadCn } from "@/storyblok/_components/CarouselWithChadCn.cms";
-import { CmsCarousel } from "@/storyblok/_components/Carousel.cms";
 
 storyblokInit({
   components: {
@@ -49,7 +48,6 @@ storyblokInit({
     partner_grid: DepricatedCmsPartnerGrid,
     full_bleed_carousel: CmsFullBleedCarousel,
     carousel_with_chadcn: CmsCarouselWithChadCn,
-    carousel: CmsCarousel,
     full_bleed_carousel_item: CmsFullBleedCarouselItem,
 
     // todo: create storyblok variant
