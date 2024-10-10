@@ -50,10 +50,8 @@ storyblokInit({
     full_bleed_carousel: CmsFullBleedCarousel,
     carousel_with_chadcn: CmsCarouselWithChadCn,
     full_bleed_carousel_item: CmsFullBleedCarouselItem,
-
     shadow_card_gallery_grid_item: InsidesGridItemCms,
     insights_grid: CmsInsightsGrid,
-    // todo: create storyblok variant
     leader_grid_item: LeaderGridItem,
   },
   enableFallbackComponent: true,

@@ -2,30 +2,30 @@ import { storyblokEditable } from "@storyblok/react/rsc";
 import NextImage from "next/image";
 import { SbImage } from "@/storyblok/types/SbImage";
 import Link from "next/link";
-import { SbLink } from "@/storyblok/types/SbLink";
 
 export type TLeaderGridItem = {
   blok: {
     image: SbImage;
     name: string;
     position: string;
-    linkedIn: SbLink;
+    linkedIn: string;
   };
+  headingAs: "h2" | "h3";
 };
 
 export function LeaderGridItem({
   blok,
   blok: {
-    image: { filename, alt },
-    linkedIn: { url, target },
-    position,
-    name,
+    image: { filename = "", alt = "" },
+    linkedIn = "",
+    position = "",
+    name = "",
   },
   headingAs: Heading = "h3",
 }: TLeaderGridItem) {
   return (
     <section {...storyblokEditable(blok)} className="flex flex-col gap-4">
-      <NextImage alt={filename} src={alt} height={490} width={490} />
+      <NextImage alt={alt} src={filename} height={490} width={490} />
       <div className="flex justify-around items-center">
         <hgroup className="flex flex-col gap-4">
           <Heading className="uppercase text-base font-bold text-black">
@@ -33,11 +33,11 @@ export function LeaderGridItem({
           </Heading>
           <p className="text-base text-black">{position}</p>
         </hgroup>
-        <Link href={url} target={target}>
+        <Link href={linkedIn} target="_blank">
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            width="48px"
-            height="48px"
+            width="25px"
+            height="25px"
             viewBox="0 0 48 48"
             version="1.1"
           >

@@ -1,7 +1,7 @@
 import { SbBlokData } from "@storyblok/react";
 import { StoryblokComponent, storyblokEditable } from "@storyblok/react/rsc";
-import { clsx } from "clsx";
 import { formatTitleToId } from "@/app/(helpers)/formatTitleToId";
+import { cn } from "@/lib/utils";
 
 export type TCmsGalleryGrid = {
   blok: {
@@ -15,7 +15,7 @@ export type TCmsGalleryGrid = {
     /**
      * determines how many columns out of 4.
      */
-    layout: "ascending" | "odds";
+    layout: "ascending" | "evens" | "odds";
   };
 };
 
@@ -27,7 +27,7 @@ export function CmsGalleryGrid({
   const headingId = title ? formatTitleToId(title) : "";
   return (
     <Section
-      className={clsx("", {
+      className={cn("", {
         "bg-white": !isDarkMode,
         "bg-black": isDarkMode,
       })}
@@ -35,18 +35,19 @@ export function CmsGalleryGrid({
       {...storyblokEditable(blok)}
     >
       <div
-        className={clsx("max-w-7xl mx-auto gap-6 py-20 px-4 xl:px-0 grid ", {
+        className={cn("max-w-7xl mx-auto gap-6 py-20 px-4 xl:px-0 grid ", {
           "bg-white": !isDarkMode,
           "bg-black": isDarkMode,
           "sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4":
             layout === "ascending",
-          "grid-cols-2 lg:grid-cols-4": layout === "odds",
+          "grid-cols-2 lg:grid-cols-4": layout === "evens",
+          "grid-cols-2 lg:grid-cols-3": layout === "odds",
         })}
       >
         {title ? (
           <h2
             id={headingId}
-            className={clsx("text-5xl font-bold col-span-full mb-10", {
+            className={cn("text-5xl font-bold col-span-full mb-10", {
               "text-white": isDarkMode,
               "text-black": !isDarkMode,
             })}
