@@ -26,6 +26,7 @@ import { InsidesGridItemCms } from "@/storyblok/_components/InsightsGridItem.cms
 import { LeaderGridItem } from "@/storyblok/_components/LeaderGridItem.cms";
 import { CmsCarouselWithChadCn } from "@/storyblok/_components/CarouselWithChadCn.cms";
 import { CmsInsightsGrid } from "@/storyblok/_components/CmsInsightsGrid";
+import { CallOutBlockCms } from "@/storyblok/_components/CallOutBlock.cms";
 
 storyblokInit({
   components: {
@@ -53,6 +54,7 @@ storyblokInit({
     shadow_card_gallery_grid_item: InsidesGridItemCms,
     insights_grid: CmsInsightsGrid,
     leader_grid_item: LeaderGridItem,
+    call_out_block: CallOutBlockCms,
   },
   enableFallbackComponent: true,
 });
