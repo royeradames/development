@@ -10,10 +10,11 @@ function useCarousel(itemCount: number) {
 
   // Calculate item width once the component mounts
   useEffect(() => {
-    if (carouselRef.current) {
-      const item = carouselRef.current.querySelector(
+    const carousel = carouselRef.current;
+    if (carousel) {
+      const item = carousel.querySelector(
         ".carousel-item",
-      ) as HTMLElement;
+      ) as HTMLElement | null;
       if (item) {
         const itemStyles = window.getComputedStyle(item);
         const width =
@@ -25,8 +26,9 @@ function useCarousel(itemCount: number) {
 
   // Update currentIndex on scroll
   const handleScroll = () => {
-    if (carouselRef.current && itemWidth > 0) {
-      const scrollLeft = carouselRef.current.scrollLeft;
+    const carousel = carouselRef.current;
+    if (carousel && itemWidth > 0) {
+      const scrollLeft = carousel.scrollLeft;
       const newIndex = Math.round(scrollLeft / itemWidth);
       setCurrentIndex(newIndex);
     }
@@ -46,8 +48,9 @@ function useCarousel(itemCount: number) {
 
   // Function to scroll to a specific index
   const scrollToIndex = (index: number) => {
-    if (carouselRef.current && itemWidth > 0) {
-      carouselRef.current.scrollTo({
+    const carousel = carouselRef.current;
+    if (carousel && itemWidth > 0) {
+      carousel.scrollTo({
         left: index * itemWidth,
         behavior: "smooth",
       });
@@ -80,7 +83,7 @@ export type TFullBleedCarousel = {
   blok: {
     title?: string;
     items: SbBlokData[];
-    buttonsPosition: "bellow" | "inside" | "none";
+    buttonsPosition: "below" | "inside" | "none";
   };
 };
 
@@ -88,8 +91,9 @@ export function CmsFullBleedCarousel({
   blok,
   blok: { title = "", items, buttonsPosition = "none" },
 }: TFullBleedCarousel) {
-  const { currentIndex, carouselRef, handlePrev, handleNext, scrollToIndex } =
-    useCarousel(items.length);
+  const { carouselRef, handlePrev, handleNext, scrollToIndex } = useCarousel(
+    items.length,
+  );
 
   return (
     <section
@@ -124,7 +128,7 @@ export function CmsFullBleedCarousel({
       </div>
 
       {/* Optional Prev and Next Buttons Below the Carousel */}
-      {buttonsPosition === "bellow" && (
+      {buttonsPosition === "below" && (
         <div className="flex justify-center mt-4">
           <button onClick={handlePrev} className="btn btn-circle mx-2">
             ❮
