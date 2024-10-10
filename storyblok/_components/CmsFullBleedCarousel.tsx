@@ -37,10 +37,15 @@ function useCarousel(itemCount: number) {
       return;
     }
     const scrollLeft = carousel.scrollLeft;
-    const newIndex = Math.round(scrollLeft / itemWidth);
-    setCurrentIndex(newIndex);
+    // Calculate how many items have been scrolled past
+    const scrolledItemsCount = scrollLeft / itemWidth;
+
+    // Round to get the index of the current item in view
+    const currentItemIndex = Math.round(scrolledItemsCount);
+    setCurrentIndex(currentItemIndex);
   };
 
+  //Attaches an event listener to the carousel to update the current index whenever the carousel is scrolled.
   useEffect(() => {
     const carousel = carouselRef.current;
     if (carousel) {
@@ -72,13 +77,15 @@ function useCarousel(itemCount: number) {
 
   // Functions for prev and next buttons
   const handlePrev = () => {
-    const newIndex = currentIndex > 0 ? currentIndex - 1 : itemCount - 1;
+    const isFirstItem = currentIndex === 0;
+    const newIndex = isFirstItem ? itemCount - 1 : currentIndex - 1;
     scrollToIndex(newIndex);
     setCurrentIndex(newIndex);
   };
 
   const handleNext = () => {
-    const newIndex = currentIndex < itemCount - 1 ? currentIndex + 1 : 0;
+    const isLastItem = currentIndex === itemCount - 1;
+    const newIndex = isLastItem ? 0 : currentIndex + 1;
     scrollToIndex(newIndex);
     setCurrentIndex(newIndex);
   };
