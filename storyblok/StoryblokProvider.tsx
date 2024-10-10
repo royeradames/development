@@ -13,7 +13,7 @@ import { CmsGalleryItem } from "@/storyblok/_components/CmsGalleryItem";
 import { CmsGalleryFlex } from "@/storyblok/_components/CmsGalleryFlex";
 import { CmsGalleryFlexItem } from "@/storyblok/_components/CmsGalleryFlexItem";
 import CmsPanoramaImage from "@/storyblok/_components/CmsParonamaImage";
-import CmsContentBlock from "@/storyblok/_components/CmsContentBlock";
+import { CmsContentBlock } from "@/storyblok/_components/CmsContentBlock";
 import { CmsHeroWithFigure } from "@/storyblok/_components/CmsHeroWithFigure";
 import { CmsRichtext } from "@/storyblok/_components/CmsRichtext";
 import { CmsPartnerGridItem } from "@/storyblok/_components/CmsPartnerGridItem";
@@ -22,9 +22,10 @@ import { DepricatedCmsPartnerGrid } from "@/storyblok/_components/DepricatedCmsP
 import { DepricatedCmsPartnerGridExtendedNoLimit } from "@/storyblok/_components/DepricatedCmsPartnerGridExtendedNoLimit";
 import { CmsFullBleedCarousel } from "@/storyblok/_components/CmsFullBleedCarousel";
 import { CmsFullBleedCarouselItem } from "@/storyblok/_components/CmsFullBleedCarouselItem";
-import { CmsShadowCardGalleryGridItem } from "@/storyblok/_components/CmsShadowCardGalleryGridItem";
+import { InsidesGridItemCms } from "@/storyblok/_components/InsightsGridItem.cms";
 import { LeaderGridItem } from "@/storyblok/_components/LeaderGridItem.cms";
 import { CmsCarouselWithChadCn } from "@/storyblok/_components/CarouselWithChadCn.cms";
+import { CmsInsightsGrid } from "@/storyblok/_components/CmsInsightsGrid";
 
 storyblokInit({
   components: {
@@ -50,8 +51,9 @@ storyblokInit({
     carousel_with_chadcn: CmsCarouselWithChadCn,
     full_bleed_carousel_item: CmsFullBleedCarouselItem,
 
+    shadow_card_gallery_grid_item: InsidesGridItemCms,
+    insights_grid: CmsInsightsGrid,
     // todo: create storyblok variant
-    shadow_card_gallery_grid_item: CmsShadowCardGalleryGridItem,
     leader_grid_item: LeaderGridItem,
   },
   enableFallbackComponent: true,
