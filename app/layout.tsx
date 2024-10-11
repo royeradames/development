@@ -3,8 +3,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import React from "react";
 import StoryblokProvider from "@/storyblok/StoryblokProvider";
-import { apiPlugin, storyblokInit, StoryblokStory } from "@storyblok/react/rsc";
-import { fetchStory } from "@/utils/fetchStory";
+import { apiPlugin, storyblokInit } from "@storyblok/react/rsc";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -34,20 +33,12 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const [headerStory, footerStory] = await Promise.all([
-    fetchStory("header"),
-    fetchStory("footer"),
-  ]);
   return (
     <html lang="en" data-theme="forest">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <StoryblokProvider>
-          <StoryblokStory story={headerStory} bridgeOptions={{}} />
-          {children}
-          <StoryblokStory story={footerStory} bridgeOptions={{}} />
-        </StoryblokProvider>
+        <StoryblokProvider>{children}</StoryblokProvider>
       </body>
     </html>
   );
