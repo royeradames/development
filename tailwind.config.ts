@@ -1,8 +1,9 @@
 import daisyui from "daisyui";
+import { DarkModeConfig, PluginsConfig } from "tailwindcss/types/config";
 
 const config: {
   daisyui: { themes: string[] };
-  plugins: (ReturnType<Plugin> | { handler: () => void })[];
+  plugins: PluginsConfig;
   theme: {
     extend: {
       borderRadius: { md: string; sm: string; lg: string };
@@ -29,11 +30,10 @@ const config: {
       };
     };
   };
-  darkMode: string;
+  darkMode: Partial<DarkModeConfig> | undefined;
   content: string[];
 } = {
-  // const config = {
-  darkMode: "class",
+  darkMode: undefined,
   content: [
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
