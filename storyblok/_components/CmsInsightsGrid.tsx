@@ -2,7 +2,7 @@ import { storyblokEditable } from "@storyblok/js";
 import { SbBlokData, StoryblokComponent } from "@storyblok/react";
 import { clsx } from "clsx";
 import { formatTitleToId } from "@/utils/formatTitleToId";
-import { cn } from "@/lib/utils";
+import { cn } from "@/utils/cn";
 
 export type TCmsInsideGrid = {
   blok: {
