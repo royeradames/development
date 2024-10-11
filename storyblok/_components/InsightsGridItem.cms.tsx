@@ -2,7 +2,7 @@ import Link from "next/link";
 import { SbLink } from "@/storyblok/types/SbLink";
 import { storyblokEditable } from "@storyblok/react/rsc";
 import { TCmsInsideGrid } from "@/storyblok/_components/CmsInsightsGrid";
-import { cn } from "@/lib/utils";
+import { cn } from "@/utils/cn";
 
 type TCmsShadowCardGalleryGridItem = {
   blok: {
