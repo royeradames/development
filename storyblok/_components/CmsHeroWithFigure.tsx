@@ -2,7 +2,7 @@ import { SbImage } from "@/storyblok/types/SbImage";
 import NextImage from "next/image";
 import { storyblokEditable } from "@storyblok/react/rsc";
 import { ISbRichtext } from "@storyblok/react";
-import { formatTitleToId } from "@/app/(helpers)/formatTitleToId";
+import { formatTitleToId } from "@/utils/formatTitleToId";
 
 export type TCmsHeroWithFigure = {
   blok: {

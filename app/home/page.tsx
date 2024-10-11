@@ -1,5 +1,5 @@
 import { StoryblokStory } from "@storyblok/react/rsc";
-import { fetchStory } from "@/app/(helpers)/fetchStory";
+import { fetchStory } from "@/utils/fetchStory";
 
 const Page = async () => {
   const story = await fetchStory("home");

@@ -1,7 +1,7 @@
 import { SbBlokData } from "@storyblok/react";
 import { StoryblokComponent, storyblokEditable } from "@storyblok/react/rsc";
 import { clsx } from "clsx";
-import { formatTitleToId } from "@/app/(helpers)/formatTitleToId";
+import { formatTitleToId } from "@/utils/formatTitleToId";
 
 export type TCmsPartnerGridExtended = {
   blok: {

@@ -1,7 +1,7 @@
 import { storyblokEditable } from "@storyblok/react/rsc";
 import { clsx } from "clsx";
 import { SbImage } from "@/storyblok/types/SbImage";
-import { formatTitleToId } from "@/app/(helpers)/formatTitleToId";
+import { formatTitleToId } from "@/utils/formatTitleToId";
 import Link from "next/link";
 import NextImage from "next/image";
 

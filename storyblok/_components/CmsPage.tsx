@@ -1,6 +1,6 @@
 import { StoryblokComponent } from "@storyblok/react/rsc";
 import { SbBlokData, StoryblokComponentType } from "@storyblok/react";
-import { formatTitleToId } from "@/app/(helpers)/formatTitleToId";
+import { formatTitleToId } from "@/utils/formatTitleToId";
 import { TCmsHero } from "@/storyblok/_components/CmsHero";
 
 export type TStoryBokCmsPage = {

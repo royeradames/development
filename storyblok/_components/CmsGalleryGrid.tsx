@@ -1,6 +1,6 @@
 import { SbBlokData } from "@storyblok/react";
 import { StoryblokComponent, storyblokEditable } from "@storyblok/react/rsc";
-import { formatTitleToId } from "@/app/(helpers)/formatTitleToId";
+import { formatTitleToId } from "@/utils/formatTitleToId";
 import { cn } from "@/lib/utils";
 
 export type TCmsGalleryGrid = {
