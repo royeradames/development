@@ -24,7 +24,6 @@ import { CmsFullBleedCarousel } from "@/storyblok/_components/CmsFullBleedCarous
 import { CmsFullBleedCarouselItem } from "@/storyblok/_components/CmsFullBleedCarouselItem";
 import { InsidesGridItemCms } from "@/storyblok/_components/InsightsGridItem.cms";
 import { LeaderGridItem } from "@/storyblok/_components/LeaderGridItem.cms";
-import { CmsCarouselWithChadCn } from "@/storyblok/_components/CarouselWithChadCn.cms";
 import { CmsInsightsGrid } from "@/storyblok/_components/CmsInsightsGrid";
 import { CallOutBlockCms } from "@/storyblok/_components/CallOutBlock.cms";
 
@@ -49,7 +48,6 @@ storyblokInit({
     partner_grid_extended_no_limit: DepricatedCmsPartnerGridExtendedNoLimit,
     partner_grid: DepricatedCmsPartnerGrid,
     full_bleed_carousel: CmsFullBleedCarousel,
-    carousel_with_chadcn: CmsCarouselWithChadCn,
     full_bleed_carousel_item: CmsFullBleedCarouselItem,
     shadow_card_gallery_grid_item: InsidesGridItemCms,
     insights_grid: CmsInsightsGrid,
