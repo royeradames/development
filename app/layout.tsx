@@ -34,12 +34,14 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" data-theme="forest">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        <StoryblokProvider>{children}</StoryblokProvider>
-      </body>
-    </html>
+    <StoryblokProvider>
+      <html lang="en" data-theme="forest">
+        <body
+          className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        >
+          {children}
+        </body>
+      </html>
+    </StoryblokProvider>
   );
 }
