@@ -27,6 +27,7 @@ export function CmsHeroWithFigure({
     <section
       className="py-20 px-4 xl:px-0 w-full bg-black"
       aria-labelledby={headingId}
+      data-component="CmsHeroWithFigure"
       {...storyblokEditable(blok)}
     >
       <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center">
@@ -37,7 +38,10 @@ export function CmsHeroWithFigure({
           </figcaption>
         </figure>
         <div className="flex flex-col gap-4">
-          <h2 className="text-5xl font-bold text-white" id={headingId}>
+          <h2
+            className="text-4xl sm:text-5xl font-bold text-white"
+            id={headingId}
+          >
             {title}
           </h2>
           {content.content?.map((aParagraph) => {
