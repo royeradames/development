@@ -12,7 +12,7 @@ export type TCmsHeader = {
 
 export function CmsHeader({ blok }: TCmsHeader) {
   return (
-    <div {...storyblokEditable(blok)}>
+    <div data-component="CmsHeader" {...storyblokEditable(blok)}>
       <Image
         width={2802}
         height={368}

@@ -18,6 +18,7 @@ export function DepricatedCmsPartnerGridExtended({
   const Section = title ? "section" : "div";
   return (
     <Section
+      data-component="DepricatedCmsPartnerGridExtended"
       className={clsx("", {
         "bg-white": !isDarkMode,
         "bg-black": isDarkMode,

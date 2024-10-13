@@ -24,7 +24,11 @@ export function LeaderGridItem({
   headingAs: Heading = "h3",
 }: TLeaderGridItem) {
   return (
-    <section {...storyblokEditable(blok)} className="flex flex-col gap-4">
+    <section
+      data-component="LeaderGridItem"
+      {...storyblokEditable(blok)}
+      className="flex flex-col gap-4"
+    >
       <NextImage alt={alt} src={filename} height={490} width={490} />
       <div className="flex justify-around items-center">
         <hgroup className="flex flex-col gap-4">

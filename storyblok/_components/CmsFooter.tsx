@@ -12,7 +12,7 @@ export type TCmsFooter = {
 
 export function CmsFooter({ blok }: TCmsFooter) {
   return (
-    <div {...storyblokEditable(blok)}>
+    <div data-component="CmsFooter" {...storyblokEditable(blok)}>
       <Image
         width={2802}
         height={368}

@@ -16,6 +16,7 @@ export function CmsGalleryItem({
 }: TCmsGallery) {
   return (
     <div
+      data-component="CmsGalleryItem"
       className="bg-[#222424] text-white box-border p-4 pt-6 pb-8"
       {...storyblokEditable(blok)}
     >

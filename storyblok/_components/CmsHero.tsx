@@ -23,6 +23,7 @@ export default function CmsHero({
 }: TCmsHero) {
   return (
     <div
+      data-component="CmsHero"
       className="hero min-h-screen bg-right-bottom bg-no-repeat bg-contain bg-black justify-items-start"
       style={{
         backgroundImage: `url(${filename})`,

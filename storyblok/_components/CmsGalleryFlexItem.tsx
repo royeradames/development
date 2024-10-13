@@ -15,6 +15,7 @@ export function CmsGalleryFlexItem({
 }: TCmsGalleryFlexItem) {
   return (
     <div
+      data-component="CmsGalleryFlexItem"
       className="bg-[#222424] text-white box-border p-4 pt-6 pb-8 flex-grow basis-[250px] flex-shrink-0 max-w-[600px]"
       {...storyblokEditable(blok)}
     >

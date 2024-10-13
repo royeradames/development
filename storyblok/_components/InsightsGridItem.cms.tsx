@@ -28,6 +28,7 @@ export function InsidesGridItemCms({
 }: TCmsShadowCardGalleryGridItem) {
   return (
     <section
+      data-component="InsidesGridItemCms"
       className={cn("shadow-xl p-8 bg-white", {
         "bg-[#222424]": appearance === "dark",
         "bg-white": appearance === "light",

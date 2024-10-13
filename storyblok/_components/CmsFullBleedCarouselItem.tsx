@@ -61,6 +61,7 @@ export function CmsFullBleedCarouselItem({
   const backgroundImage = `url('${backgroundImagefilename}')${linearGradiant[backgroundColor] ? `, ${linearGradiant[backgroundColor]}` : ""}`;
   return (
     <section
+      data-component="CmsFullBleedCarouselItem"
       id={id}
       aria-labelledby={headingId}
       className={clsx(

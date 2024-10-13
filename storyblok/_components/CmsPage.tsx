@@ -17,7 +17,10 @@ export function CmsPage({
   },
 }: TStoryBokCmsPage) {
   return (
-    <article aria-labelledby={formatTitleToId(headerBlock.title)}>
+    <article
+      data-component="CmsPage"
+      aria-labelledby={formatTitleToId(headerBlock.title)}
+    >
       <StoryblokComponent blok={{ ...headerBlock, headingAs: "h1" }} />
       <div>
         {body?.map((blok: any) => (

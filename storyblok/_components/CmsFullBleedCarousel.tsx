@@ -124,6 +124,7 @@ export function CmsFullBleedCarousel({
 
   return (
     <section
+      data-component="CmsFullBleedCarousel"
       className="py-20 bg-white flex flex-col gap-6 w-full"
       {...storyblokEditable(blok)}
     >

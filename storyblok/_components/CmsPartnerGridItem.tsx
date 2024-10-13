@@ -19,6 +19,7 @@ export function CmsPartnerGridItem({
 }: TCmsPartnerGridItem) {
   return (
     <div
+      data-component="CmsPartnerGridItem"
       className={clsx("", {
         "bg-[#f4f4f4]": !isDarkMode,
         "bg-[#222424]": isDarkMode,

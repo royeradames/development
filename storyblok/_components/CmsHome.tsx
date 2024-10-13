@@ -5,5 +5,5 @@ type TCmsHome = {
 };
 
 export function CmsHome({ blok }: TCmsHome) {
-  return <StoryblokComponent blok={blok} />;
+  return <StoryblokComponent data-component="CmsHome" blok={blok} />;
 }

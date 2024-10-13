@@ -39,6 +39,7 @@ export function CmsButton({
 }: TCmsButton) {
   return (
     <button
+      data-component="CmsButton"
       className={cn([
         "btn",
         {

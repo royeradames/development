@@ -23,14 +23,14 @@ export function CmsInsightsGrid({
   const headingId = formatTitleToId(title);
   return (
     <Comp
+      data-component="CmsInsightsGrid"
       aria-labelledby={Comp === "section" ? headingId : undefined}
-      {...storyblokEditable(blok)}
-      data-component="highlight-block-grid"
       className={cn("py-12 lg:px-12 flex justify-center", {
         "bg-black": appearance === "dark",
         "bg-white": appearance === "light",
         "bg-white dark:bg-black": appearance === "auto",
       })}
+      {...storyblokEditable(blok)}
     >
       <div className="flex flex-col gap-10 max-w-screen-xl">
         {title ? (

@@ -24,6 +24,7 @@ export function CmsActionLink({
   return (
     <div {...storyblokEditable(blok)}>
       <Link
+        data-component="CmsActionLink"
         href={cached_url}
         target={target}
         className={clsx(

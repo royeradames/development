@@ -19,6 +19,7 @@ export function DepricatedCmsPartnerGridExtendedNoLimit({
   const Section = title ? "section" : "div";
   return (
     <Section
+      data-component="DepricatedCmsPartnerGridExtendedNoLimit"
       className={clsx("", {
         "bg-white": !isDarkMode,
         "bg-black": isDarkMode,

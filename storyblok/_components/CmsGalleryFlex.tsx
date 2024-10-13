@@ -15,6 +15,7 @@ export function CmsGalleryFlex({
   const Section = title ? "section" : "div";
   return (
     <Section
+      data-component="CmsGalleryFlex"
       className="px-4 xl:px-0 pt-20 bg-black"
       {...storyblokEditable(blok)}
     >

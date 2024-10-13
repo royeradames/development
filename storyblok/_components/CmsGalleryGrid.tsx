@@ -27,6 +27,7 @@ export function CmsGalleryGrid({
   const headingId = title ? formatTitleToId(title) : "";
   return (
     <Section
+      data-component="CmsGalleryGrid"
       className={cn("", {
         "bg-white": !isDarkMode,
         "bg-black": isDarkMode,
