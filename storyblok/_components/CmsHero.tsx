@@ -30,13 +30,14 @@ export default function CmsHero({
       {...storyblokEditable(blok)}
     >
       <div className="hero-overlay bg-opacity-60 bg-transparent"></div>
-      <div className="hero-content text-neutral-content pl-16 items-start">
+      <div className="hero-content text-neutral-content sm:pl-16 items-start">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="48px"
           height="48px"
           viewBox="0 0 48 48"
           version="1.1"
+          className="h-12 w-12 hidden sm:block"
         >
           <title>chevron_right_white_48</title>
           <g
@@ -59,11 +60,14 @@ export default function CmsHero({
         </svg>
 
         <div className="max-w-md">
-          <Heading className="mb-5 text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-[#1abba9] to-[#6078ea]">
+          <Heading className="mb-5 text-4xl sm:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-[#1abba9] to-[#6078ea]">
             {title}
           </Heading>
-          <p className="mb-5">{body}</p>
-          <StoryblokComponent blok={actionBlok} />
+          <p className="mb-5 text-base text-white">{body}</p>
+          <StoryblokComponent
+            blok={actionBlok}
+            className="bg-white text-black hover:bg-white hover:text-black rounded-none"
+          />
         </div>
       </div>
     </div>
