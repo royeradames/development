@@ -24,7 +24,7 @@ export function CmsContentBlock({
     >
       <div className="max-w-7xl flex flex-col gap-16">
         <div className="flex flex-col md:flex-row gap-6 justify-around">
-          <h2 className="mt-4 col-span-3 text-xl font-bold text-white min-w-max">
+          <h2 className="mt-4 col-span-3 text-xl font-bold text-white">
             {title}
           </h2>
           <p className="text-white text-base col-span-2">{content}</p>
