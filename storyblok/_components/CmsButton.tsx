@@ -5,6 +5,7 @@ export type TCmsButton = {
   blok: {
     text: string;
     type?:
+      | "none"
       | "neutral"
       | "primary"
       | "secondary"
