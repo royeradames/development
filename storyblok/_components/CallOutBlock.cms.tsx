@@ -1,6 +1,7 @@
 import { SbLink } from "@/storyblok/types/SbLink";
-import Link from "next/link";
 import { storyblokEditable } from "@storyblok/react/rsc";
+import { ContactUsDialog } from "@/app/ContactUsDialog";
+import { useRef } from "react";
 
 export function CallOutBlockCms({
   blok,
@@ -20,6 +21,13 @@ export function CallOutBlockCms({
 }: {
   blok: { title: string; message: string; destination: SbLink; label: string };
 }) {
+  const modalRef = useRef(null);
+
+  const openModal = () => {
+    if (modalRef.current) {
+      modalRef.current.showModal();
+    }
+  };
   return (
     <section
       className="p-6 flex justify-center w-full"
@@ -30,14 +38,13 @@ export function CallOutBlockCms({
       <div className="max-w-sm ">
         <h2 className="text-4xl text-white font-extrabold">{title}</h2>
         <p className="text-base text-white">{message}</p>
-        <Link
-          href={cached_url}
-          target={target}
+        <button
           className="btn rounded-none text-white mt-2"
-          rel={target === "_blank" ? "noopener noreferrer" : undefined}
+          onClick={openModal}
         >
           {label}
-        </Link>
+        </button>
+        <ContactUsDialog modalRef={modalRef} />
       </div>
     </section>
   );

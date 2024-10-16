@@ -37,6 +37,7 @@ export function CmsButton({
     noAnimation = false,
   },
   className = "",
+  ...props
 }: TCmsButton) {
   return (
     <button
@@ -70,6 +71,7 @@ export function CmsButton({
         },
       ])}
       {...storyblokEditable(blok)}
+      {...props}
     >
       {text}
     </button>
