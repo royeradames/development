@@ -1,7 +1,6 @@
 import { SbLink } from "@/storyblok/types/SbLink";
 import { storyblokEditable } from "@storyblok/react/rsc";
-import { ContactUsDialog } from "@/app/ContactUsDialog";
-import { useRef } from "react";
+import { useContactUsDialog } from "@/storyblok/customHooks/useContactUsDialog";
 
 export function CallOutBlockCms({
   blok,
@@ -21,15 +20,7 @@ export function CallOutBlockCms({
 }: {
   blok: { title: string; message: string; destination: SbLink; label: string };
 }) {
-  const modalRef = useRef<HTMLDialogElement | null>(null);
-
-  const openModal = () => {
-    const currentModalRef = modalRef.current;
-    if (!currentModalRef) {
-      return;
-    }
-    currentModalRef.showModal();
-  };
+  const { ContactUsDialog, openContactUsModal } = useContactUsDialog();
   return (
     <section
       className="p-6 flex justify-center w-full"
@@ -42,11 +33,11 @@ export function CallOutBlockCms({
         <p className="text-base text-white md:col-start-1">{message}</p>
         <button
           className="btn rounded-none text-white mt-2 w-full md:place-self-center md:row-end-3 md:col-start-2 md:mt-0"
-          onClick={openModal}
+          onClick={openContactUsModal}
         >
           {label}
         </button>
-        <ContactUsDialog modalRef={modalRef} />
+        <ContactUsDialog />
       </div>
     </section>
   );

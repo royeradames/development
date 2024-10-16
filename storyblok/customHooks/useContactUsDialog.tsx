@@ -1,5 +1,15 @@
-export function ContactUsDialog({ modalRef }: { modalRef: any }) {
-  return (
+import { useRef } from "react";
+
+export function useContactUsDialog() {
+  const modalRef = useRef<HTMLDialogElement | null>(null);
+  const openContactUsModal = () => {
+    const currentModalRef = modalRef.current;
+    if (!currentModalRef) {
+      return;
+    }
+    currentModalRef.showModal();
+  };
+  const ContactUsDialog = () => (
     <dialog id="contact-us" className="modal" ref={modalRef}>
       <div className="modal-box">
         <form method="dialog">
@@ -9,8 +19,8 @@ export function ContactUsDialog({ modalRef }: { modalRef: any }) {
         </form>
         <h2 className="font-bold text-lg">¿Cómo podemos ayudarte?</h2>
         <p className="py-4 flex gap-6 p-4">
-          <div>RoyerAAdames@gmail.com</div>
-          <div>(849) 801-9345</div>
+          <span>RoyerAAdames@gmail.com</span>
+          <span>(849) 801-9345</span>
         </p>
       </div>
       <form method="dialog" className="modal-backdrop">
@@ -18,4 +28,9 @@ export function ContactUsDialog({ modalRef }: { modalRef: any }) {
       </form>
     </dialog>
   );
+
+  return {
+    openContactUsModal,
+    ContactUsDialog,
+  };
 }

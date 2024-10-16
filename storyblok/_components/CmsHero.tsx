@@ -1,8 +1,7 @@
 import { SbBlokData } from "@storyblok/react";
 import { StoryblokComponent, storyblokEditable } from "@storyblok/react/rsc";
 import { SbImage } from "@/storyblok/types/SbImage";
-import { useRef } from "react";
-import { ContactUsDialog } from "@/app/ContactUsDialog";
+import { useContactUsDialog } from "@/storyblok/customHooks/useContactUsDialog";
 
 export type TCmsHero = {
   blok: {
@@ -23,15 +22,7 @@ export default function CmsHero({
     headingAs: Heading = "h2",
   },
 }: TCmsHero) {
-  const modalRef = useRef<HTMLDialogElement | null>(null);
-
-  const openModal = () => {
-    const currentModalRef = modalRef.current;
-    if (!currentModalRef) {
-      return;
-    }
-    currentModalRef.showModal();
-  };
+  const { ContactUsDialog, openContactUsModal } = useContactUsDialog();
   return (
     <div
       data-component="CmsHero"
@@ -79,9 +70,9 @@ export default function CmsHero({
           <StoryblokComponent
             blok={actionBlok}
             className="bg-white text-black hover:bg-white hover:text-black rounded-none"
-            onClick={openModal}
+            onClick={openContactUsModal}
           />
-          <ContactUsDialog modalRef={modalRef} />
+          <ContactUsDialog />
         </div>
       </div>
     </div>
