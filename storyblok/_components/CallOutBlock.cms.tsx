@@ -21,12 +21,14 @@ export function CallOutBlockCms({
 }: {
   blok: { title: string; message: string; destination: SbLink; label: string };
 }) {
-  const modalRef = useRef(null);
+  const modalRef = useRef<HTMLDialogElement | null>(null);
 
   const openModal = () => {
-    if (modalRef.current) {
-      modalRef.current.showModal();
+    const currentModalRef = modalRef.current;
+    if (!currentModalRef) {
+      return;
     }
+    currentModalRef.showModal();
   };
   return (
     <section

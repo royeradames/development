@@ -23,12 +23,14 @@ export default function CmsHero({
     headingAs: Heading = "h2",
   },
 }: TCmsHero) {
-  const modalRef = useRef(null);
+  const modalRef = useRef<HTMLDialogElement | null>(null);
 
   const openModal = () => {
-    if (modalRef.current) {
-      modalRef.current.showModal();
+    const currentModalRef = modalRef.current;
+    if (!currentModalRef) {
+      return;
     }
+    currentModalRef.showModal();
   };
   return (
     <div
