@@ -22,6 +22,7 @@ export type TCmsGalleryGrid = {
 export function CmsGalleryGrid({
   blok,
   blok: { title, items, isDarkMode = true, layout = "ascending" },
+  ...props
 }: TCmsGalleryGrid) {
   const Section = title ? "section" : "div";
   const headingId = title ? formatTitleToId(title) : "";
@@ -34,6 +35,7 @@ export function CmsGalleryGrid({
       })}
       aria-labelledby={title ? headingId : undefined}
       {...storyblokEditable(blok)}
+      {...props}
     >
       <div
         className={cn("max-w-7xl mx-auto gap-6 py-20 px-4 xl:px-0 grid ", {
@@ -43,6 +45,7 @@ export function CmsGalleryGrid({
             layout === "ascending",
           "grid-cols-2 lg:grid-cols-4": layout === "evens",
           "grid-cols-2 lg:grid-cols-3": layout === "odds",
+          // "sm:grid-cols-12 ": items.length === 1,
         })}
       >
         {title ? (
