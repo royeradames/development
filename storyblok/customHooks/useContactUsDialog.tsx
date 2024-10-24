@@ -27,20 +27,39 @@ export function useContactUsDialog() {
             preferredContact: "whatsapp"
         }
     });
+
     const onSubmit = (data: FormValues) => {
-        if (data.preferredContact === "whatsapp") {
-            const message = encodeURIComponent(
-                `Name: ${data.name}\nEmail: ${data.email}\nMessage: ${data.message}`
+        if (!data) return; // Early return if data is missing
+
+        const {name, email, phone, message, preferredContact} = data;
+
+        if (preferredContact === "whatsapp") {
+            const textMessage = encodeURIComponent(
+                `Name: ${name}\nEmail: ${email}\nMessage: ${message}\nPhone: ${phone}`
             );
-            const whatsappUrl = `https://wa.me/${data.phone}?text=${message}`;
-            window.open(whatsappUrl, "_blank");
-        } else {
-            const mailtoUrl = `mailto:${data.email}?subject=Contact Form Submission&body=Name: ${data.name}%0D%0APhone: ${data.phone}%0D%0AMessage: ${data.message}`;
-            window.location.href = mailtoUrl;
+            const whatsappUrl = `https://wa.me/${process.env.CONTACT_PHONE}?text=${textMessage}`;
+            window.open(whatsappUrl, "_blank", "noopener,noreferrer");
+            setIsOpen(false);
+            form.reset();
+            return; // Early return after handling WhatsApp
         }
-        setIsOpen(false);
-        form.reset();
+
+        if (preferredContact === "email") {
+            const mailtoBody = encodeURIComponent(
+                `Name: ${name}\nPhone: ${phone}\nMessage: ${message}\nEmail: ${email}`
+            );
+            const mailtoUrl = `mailto:${process.env.CONTACT_EMAIL}?subject=Contact Form Submission&body=${mailtoBody}`;
+            window.location.href = mailtoUrl;
+            setIsOpen(false);
+            form.reset();
+            return; // Early return after handling Email
+        }
+
+        // Early return if preferredContact is neither "whatsapp" nor "email"
+        console.error("Invalid preferred contact method.");
+        return;
     };
+
 
     const openContactUsModal = () => {
         setIsOpen(true)
