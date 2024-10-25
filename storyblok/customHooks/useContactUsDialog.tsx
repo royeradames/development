@@ -14,7 +14,7 @@ const formSchema = z.object({
 
 type FormValues = z.infer<typeof formSchema>;
 
-export function useContactUsDialog() {
+export function useContactUsDialog({contactEmail, contactPhone}: { contactEmail: string; contactPhone: string }) {
     const [isOpen, setIsOpen] = useState(false);
 
     const form = useForm<FormValues>({
@@ -37,18 +37,18 @@ export function useContactUsDialog() {
             const textMessage = encodeURIComponent(
                 `Name: ${name}\nEmail: ${email}\nMessage: ${message}\nPhone: ${phone}`
             );
-            const whatsappUrl = `https://wa.me/${process.env.CONTACT_PHONE}?text=${textMessage}`;
-            window.open(whatsappUrl, "_blank", "noopener,noreferrer");
+            const whatsappUrl = `https://wa.me/${contactPhone}?text=${textMessage}`;
+            window.open(whatsappUrl, "_blank");
             setIsOpen(false);
             form.reset();
-            return; // Early return after handling WhatsApp
+            return;
         }
 
         if (preferredContact === "email") {
             const mailtoBody = encodeURIComponent(
                 `Name: ${name}\nPhone: ${phone}\nMessage: ${message}\nEmail: ${email}`
             );
-            const mailtoUrl = `mailto:${process.env.CONTACT_EMAIL}?subject=Contact Form Submission&body=${mailtoBody}`;
+            const mailtoUrl = `mailto:${contactEmail}?subject=Contact Form Submission&body=${mailtoBody}`;
             window.location.href = mailtoUrl;
             setIsOpen(false);
             form.reset();
