@@ -37,7 +37,7 @@ export function CallOutBlockCms({
 	})
 	return (
 		<section
-			className="p-6 flex justify-center w-full"
+			className="p-20 flex justify-center w-full"
 			style={{ backgroundImage: 'linear-gradient(225deg,#1abba9,#6078ea)' }}
 			data-component="CallOutBlockCms"
 			{...storyblokEditable(blok)}
