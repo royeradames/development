@@ -2,6 +2,7 @@ import { SbBlokData } from '@storyblok/react'
 import { StoryblokComponent, storyblokEditable } from '@storyblok/react/rsc'
 import { SbImage } from '@/storyblok/types/SbImage'
 import { useContactUsDialog } from '@/storyblok/customHooks/useContactUsDialog'
+import { formatTitleToId } from '@/utils/formatTitleToId'
 
 export type TCmsHero = {
 	blok: {
@@ -30,10 +31,12 @@ export default function CmsHero({
 		contactEmail,
 		contactPhone,
 	})
+	const id = formatTitleToId(title)
 	return (
-		<div
+		<section
+			aria-labelledby={id}
 			data-component="CmsHero"
-			className="hero min-h-screen bg-right-bottom bg-no-repeat bg-cover bg-black justify-items-start"
+			className="hero min-h-screen bg-right-bottom bg-no-repeat bg-cover md:bg-contain bg-black justify-items-start"
 			style={{
 				backgroundImage: `url(${filename})`,
 			}}
@@ -69,8 +72,11 @@ export default function CmsHero({
 					</g>
 				</svg>
 
-				<div className="max-w-md">
-					<Heading className="mb-5 text-4xl sm:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-[#1abba9] to-[#6078ea]">
+				<div className="max-w-md bg-black p-4">
+					<Heading
+						id={id}
+						className="mb-5 text-4xl sm:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-[#1abba9] to-[#6078ea]"
+					>
 						{title}
 					</Heading>
 					<p className="mb-5 text-base text-white">{body}</p>
@@ -82,6 +88,6 @@ export default function CmsHero({
 					<ContactUsDialog />
 				</div>
 			</div>
-		</div>
+		</section>
 	)
 }
