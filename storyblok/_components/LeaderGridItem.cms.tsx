@@ -25,7 +25,7 @@ export function LeaderGridItem({
 		name = '',
 	},
 	headingAs: Heading = 'h3',
-	isDarkMode,
+	isDarkMode = false,
 	className = '',
 }: TLeaderGridItem) {
 	return (
