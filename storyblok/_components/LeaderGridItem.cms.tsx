@@ -14,6 +14,7 @@ export type TLeaderGridItem = {
 	}
 	headingAs: 'h2' | 'h3'
 	isDarkMode: TCmsGalleryGrid['blok']['isDarkMode']
+	className: string
 }
 
 export function LeaderGridItem({
