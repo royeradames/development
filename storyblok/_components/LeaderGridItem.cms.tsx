@@ -32,18 +32,27 @@ export function LeaderGridItem({
 		<section
 			data-component="LeaderGridItem"
 			{...storyblokEditable(blok)}
-			className={cn('flex gap-4', {
+			className={cn('flex gap-4 flex-col', {
 				[className]: className,
-				'flex-col': !className,
 			})}
 		>
 			<NextImage alt={alt} src={filename} height={490} width={490} />
 			<div className="flex justify-around items-center gap-8">
 				<hgroup className="flex flex-col gap-4">
-					<Heading className="uppercase text-base font-bold text-black">
+					<Heading
+						className={cn('uppercase text-base font-bold text-black', {
+							'text-white': isDarkMode,
+						})}
+					>
 						{name}
 					</Heading>
-					<p className="text-base text-black">{position}</p>
+					<p
+						className={cn('text-base text-black', {
+							'text-white': isDarkMode,
+						})}
+					>
+						{position}
+					</p>
 				</hgroup>
 				<Link href={linkedIn} target="_blank">
 					<svg
