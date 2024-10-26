@@ -1,5 +1,8 @@
 import { SbBlokData } from '@storyblok/react'
-import { StoryblokComponent, storyblokEditable } from '@storyblok/react/rsc'
+import {
+	StoryblokComponent as SBComponent,
+	storyblokEditable,
+} from '@storyblok/react/rsc'
 import { formatTitleToId } from '@/utils/formatTitleToId'
 import { cn } from '@/utils/cn'
 
@@ -22,8 +25,13 @@ export type TCmsGalleryGrid = {
 export type TGalleryGridItem = {
 	isDarkMode: boolean
 	headingAs: 'h2' | 'h3'
-	blok: SbBlokData
+	className?: string
 }
+
+// Define a typed wrapper for StoryblokComponent
+const StoryblokComponent: React.FC<TGalleryGridItem & { blok: SbBlokData }> = (
+	props
+) => <SBComponent {...props} />
 
 export function CmsGalleryGrid({
 	blok,
@@ -77,6 +85,7 @@ export function CmsGalleryGrid({
 							className={cn('', {
 								[singleItemLayout]: isOneItem,
 							})}
+							headingAs={title ? 'h3' : 'h2'}
 						/>
 					)
 				})}

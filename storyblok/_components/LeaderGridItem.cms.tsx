@@ -2,19 +2,16 @@ import { storyblokEditable } from '@storyblok/react/rsc'
 import NextImage from 'next/image'
 import { SbImage } from '@/storyblok/types/SbImage'
 import Link from 'next/link'
-import { TCmsGalleryGrid } from '@/storyblok/_components/CmsGalleryGrid'
+import { TGalleryGridItem } from '@/storyblok/_components/CmsGalleryGrid'
 import { cn } from '@/utils/cn'
 
-export type TLeaderGridItem = {
+export type TLeaderGridItem = TGalleryGridItem & {
 	blok: {
 		image: SbImage
 		name: string
 		position: string
 		linkedIn: string
 	}
-	headingAs: 'h2' | 'h3'
-	isDarkMode: TCmsGalleryGrid['blok']['isDarkMode']
-	className: string
 }
 
 export function LeaderGridItem({
