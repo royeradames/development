@@ -33,31 +33,27 @@ export function useContactUsDialog({contactEmail, contactPhone}: { contactEmail:
 
         const {name, email, phone, message, preferredContact} = data;
 
-        if (preferredContact === "whatsapp") {
-            const textMessage = encodeURIComponent(
-                `Name: ${name}\nEmail: ${email}\nMessage: ${message}\nPhone: ${phone}`
-            );
-            const whatsappUrl = `https://wa.me/${contactPhone}?text=${textMessage}`;
-            window.open(whatsappUrl, "_blank");
-            setIsOpen(false);
-            form.reset();
-            return;
+        // Move common operations to a separate function
+        const createMessageBody = () => encodeURIComponent(
+            `Name: ${name}\nEmail: ${email}\nPhone: ${phone}\nMessage: ${message}`
+        );
+
+        switch (preferredContact) {
+            case "whatsapp":
+                const whatsappUrl = `https://wa.me/${contactPhone}?text=${createMessageBody()}`;
+                window.open(whatsappUrl, "_blank");
+                break;
+            case "email":
+                const mailtoUrl = `mailto:${contactEmail}?subject=Contact Form Submission&body=${createMessageBody()}`;
+                window.location.href = mailtoUrl;
+                break;
+            default:
+                console.error(`Invalid preferred contact method: ${preferredContact}`);
+                return; // Early return for invalid contact method
         }
 
-        if (preferredContact === "email") {
-            const mailtoBody = encodeURIComponent(
-                `Name: ${name}\nPhone: ${phone}\nMessage: ${message}\nEmail: ${email}`
-            );
-            const mailtoUrl = `mailto:${contactEmail}?subject=Contact Form Submission&body=${mailtoBody}`;
-            window.location.href = mailtoUrl;
-            setIsOpen(false);
-            form.reset();
-            return; // Early return after handling Email
-        }
-
-        // Early return if preferredContact is neither "whatsapp" nor "email"
-        console.error("Invalid preferred contact method.");
-        return;
+        setIsOpen(false);
+        form.reset();
     };
 
 
@@ -65,7 +61,10 @@ export function useContactUsDialog({contactEmail, contactPhone}: { contactEmail:
         setIsOpen(true)
     };
     const ContactUsDialog = () => (
-        <dialog className={`modal ${isOpen ? 'modal-open' : ''}`}>
+        <dialog 
+          className={`modal ${isOpen ? 'modal-open' : ''}`}
+          aria-labelledby="dialog-title"
+        >
             <div className="modal-box bg-base-100">
                 <form method="dialog">
                     <button
@@ -76,7 +75,9 @@ export function useContactUsDialog({contactEmail, contactPhone}: { contactEmail:
                     </button>
                 </form>
 
-                <h3 className="font-bold text-2xl text-center mb-6 text-base-content">Get in Touch</h3>
+                <h3 id="dialog-title" className="font-bold text-2xl text-center mb-6 text-base-content">
+                    Get in Touch
+                </h3>
 
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
                     <div className="space-y-3">
