@@ -5,9 +5,9 @@ export const fetchStory = async (storyName: string) => {
   let response: ISbResult;
   try {
     const version: "draft" | "published" =
-      process.env.ENVIRONMENT === "local" ? "draft" : "published";
+      process.env.ENVIRONMENT === "development" ? "published" : "draft";
     const cache: "no-store" | "default" =
-      process.env.ENVIRONMENT === "local" ? "no-store" : "default";
+      process.env.ENVIRONMENT === "development" ? "default" : "no-store";
     response = await storyblokApi.get(
       `cdn/stories/${storyName}`,
       { version },
