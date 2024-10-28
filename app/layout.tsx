@@ -4,6 +4,7 @@ import "./globals.css";
 import React from "react";
 import StoryblokProvider from "@/storyblok/StoryblokProvider";
 import { apiPlugin, storyblokInit } from "@storyblok/react/rsc";
+import '../env'
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
