@@ -43,3 +43,4 @@ certificates
 *.iml
 *.iws
 *.ipr
+.env.development
