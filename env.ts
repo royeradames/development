@@ -17,6 +17,16 @@ const envSchema = z.object({
 	CONTACT_EMAIL: z.string({
 		required_error: "Contact email is required in environment variables",
 	}).email("Invalid email format in environment variables"),
+	STORYBLOK_VERSION: z.enum(['draft', 'published'], {
+		errorMap: () => ({
+			message: "STORYBLOK_VERSION must be 'draft' (development) or 'published' (production)",
+		}),
+	}),
+	STORYBLOK_CACHE: z.enum(['no-store', 'default'], {
+		errorMap: () => ({
+			message: "STORYBLOK_CACHE must be 'no-store' (development) or 'default' (production)",
+		}),
+	}),
 })
 
 /**
@@ -27,6 +37,8 @@ const processEnv = {
 	ENVIRONMENT: process.env.ENVIRONMENT,
 	CONTACT_PHONE: process.env.CONTACT_PHONE,
 	CONTACT_EMAIL: process.env.CONTACT_EMAIL,
+	STORYBLOK_VERSION: process.env.STORYBLOK_VERSION,
+	STORYBLOK_CACHE: process.env.STORYBLOK_CACHE,
 }
 
 try {
@@ -39,6 +51,7 @@ try {
 				'\n'
 			)}\n` + 'See .env.example for all required variables.'
 		)
+	
 	}
 	throw err
 }
