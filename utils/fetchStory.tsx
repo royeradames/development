@@ -1,5 +1,4 @@
 import { getStoryblokApi, ISbResult } from "@storyblok/react";
-import { log } from "console";
 
 export const fetchStory = async (storyName: string) => {
   const storyblokApi = getStoryblokApi();
